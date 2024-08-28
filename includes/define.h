@@ -6,20 +6,16 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/27 21:29:17 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:06:59 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+#ifndef DEFINE_H 
+#define DEFINE_H
 
 # define ERROR 1
-
-int print_error(char *error);
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+# define TEX_SIZE 64
 
 #endif
