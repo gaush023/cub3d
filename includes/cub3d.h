@@ -30,5 +30,10 @@
 int print_error(char *error);
 int parse_check(char *file_path);
 void goodbye(t_game *game, int code, char *msg);
+void ini_texture(t_texinfo *textures);
+void ini_player(t_player *player);
+void ini_mapinfo(t_mapinfo *mapinfo);
+void ini_ray(t_ray *ray);
+int xpm_to_img(t_game *game, char *path);
 
 #endif

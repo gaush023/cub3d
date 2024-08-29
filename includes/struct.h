@@ -65,10 +65,42 @@ typdef struct s_mapinfo
   int index_end_of_map;
 } t_mapinfo;
 
+typdef struct s_ray
+{
+  double camera x;
+  double dir_x;
+  double dir_y;
+  int map_x;
+  int map_y;
+  int step_x;
+  int step_y;
+  double sidedist_x;
+  double sidedist_y;
+  double deltadist_x;
+  double deltadist_y;
+  double wall_dist;
+  double wall_x;
+  int side;
+  int line_height;
+  int draw_start;
+  int draw_end;
+} t_ray;
+
+typdef strcut s_img
+{
+  void *img;
+  int *addr;
+  int pixel_bits;
+  int size_line;
+  int endian;
+} t_img;
+
 typedef struct s_game
 {
   void *mlx;
   void *win;
+  int window_width;
+  int window_height;
   t_player *player;
   char **map;
   int **texture_pixels;

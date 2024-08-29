@@ -10,61 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-static void ini_texture(t_texinfo *textures)
-{
-  textures->north = NULL;
-  textures->south = NULL;
-  textures->west = NULL;
-  textures->east = NULL;
-  textures->floor = 0;
-  textures->ceiling = 0;
-  textures->hex_floor = 0x0;
-  textures->hex_ceiling = 0x0;
-  textures->size = TEX_SIZE;
-  textures->step = 0.0;
-  textures->pos = 0.0;
-  textures->x = 0;
-  textures->y = 0;
-}
-
-static void ini_player(t_player *player)
-{
-  player->direction = "\0";
-  player->pos_x = 0;
-  player->pos_y = 0;
-  player->direction_x = 0;
-  player->direction_y = 0;
-  player->plane_x = 0;
-  player->plane_y = 0;
-  player->has_moved = 0;
-  player->mov_x = 0;
-  player->mov_y = 0;
-  player->rotate = 0;
-}
-
-static void ini_mapinfo(t_mapinfo *mapinfo)
-{
-  mapinfo->fd = 0;
-  mapinfo->line_count = 0;
-  mapinfo->path = NULL;
-  mapinfo->file = NULL;
-  mapinfo->height = 0;
-  mapinfo->width = 0;
-  mapinfo->index_end_of_map = 0;
-}
+#include "includes/cub3d.h"
 
 void set_textures(t_game *game)
 {
   game->textures = my_calloc(5, sizeof(t_texinfo));
   if (!game->textures)
     goodbye(game, ERROR, "Error allocating memory\n");
-  game->textures[NORTH] = xpm_to_image(game->mlx, game->textures[NORTH], game->textures.north);
-  game->textures[SOUTH] = xpm_to_image(game->mlx, game->textures[SOUTH], game->textures.south);
-  game->textures[WEST] = xpm_to_image(game->mlx, game->textures[WEST], game->textures.west);
-  game->textures[EAST] = xpm_to_image(game->mlx, game->textures[EAST], game->textures.east);
-
+  game->textures[NORTH] = xpm_to_image(game->mlx,  game->textures.north);
+  game->textures[SOUTH] = xpm_to_image(game->mlx,  game->textures.south);
+  game->textures[WEST] = xpm_to_image(game->mlx,  game->textures.west);
+  game->textures[EAST] = xpm_to_image(game->mlx,  game->textures.east);
 }
 
 void set_data(t_game *game)
@@ -88,9 +44,6 @@ void init_game(t_game *game)
   if (!game->win)
     print_error("Error initializing window\n");
   set_data(game);
-  mlx_loop(game->mlx);
-  
-
 }
 
 int	main(int ac, char **av)
