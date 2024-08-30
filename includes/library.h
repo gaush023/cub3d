@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   library.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 01:13:29 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/08/31 01:14:30 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-#define DEFINE_H
+#ifndef LIBRARY_H
+# define LIBRARY_H
 
-# define ERROR 1
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
-# define TEX_SIZE 64
+# include "../helpers/malloc_lib/malloc_lib.h"
+# include "mlx.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 
 #endif

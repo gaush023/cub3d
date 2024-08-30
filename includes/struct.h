@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/28 14:06:59 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/08/31 01:40:26 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H 
+#ifndef STRUCT_H
 # define STRUCT_H
+
+#include "library.h"
 
 enum e_direction
 {
   NORTH = 0,
   SOUTH = 1,
   WEST = 2,
-  EAST = 3
+  EAST = 3,
 };
 
-typdef struct s_player
+typedef struct s_player
 {
   char *direction;
   double pos_x;
@@ -36,7 +38,7 @@ typdef struct s_player
   int rotate;
 } t_player;
 
-typdef struct s_texinfo
+typedef struct s_texinfo
 {
   char *north;
   char *south;
@@ -54,7 +56,7 @@ typdef struct s_texinfo
   int y;
 } t_texinfo;
 
-typdef struct s_mapinfo
+typedef struct s_mapinfo
 {
   int fd;
   int line_count;
@@ -65,9 +67,9 @@ typdef struct s_mapinfo
   int index_end_of_map;
 } t_mapinfo;
 
-typdef struct s_ray
+typedef struct s_ray
 {
-  double camera x;
+  double camera_x;
   double dir_x;
   double dir_y;
   int map_x;
@@ -86,7 +88,7 @@ typdef struct s_ray
   int draw_end;
 } t_ray;
 
-typdef strcut s_img
+typedef struct s_img
 {
   void *img;
   int *addr;
@@ -97,11 +99,14 @@ typdef strcut s_img
 
 typedef struct s_game
 {
+  t_node *node;
   void *mlx;
   void *win;
   int window_width;
   int window_height;
-  t_player *player;
+  t_player player;
+  t_mapinfo mapinfo;
+  t_texinfo texinfo;
   char **map;
   int **texture_pixels;
   int **textures;

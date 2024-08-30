@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 01:13:29 by sagemura         ###   ########.fr       */
+/*   Created: 2024/08/31 03:08:28 by sagemura          #+#    #+#             */
+/*   Updated: 2024/08/31 03:10:11 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-#define DEFINE_H
+#include "../../includes/cub3d.h"
 
-# define ERROR 1
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
-# define TEX_SIZE 64
+size_t	ft_strlen(const char *s)
+{
+    size_t	i;
 
-#endif
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
+}

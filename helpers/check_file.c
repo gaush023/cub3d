@@ -6,11 +6,11 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:03:15 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/28 14:14:05 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/08/31 03:21:30 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 static bool check_file_extension(char *file_path)
 {
@@ -22,9 +22,9 @@ static bool check_file_extension(char *file_path)
     return (false);
 }
 
-int	check_parse(char *file_path)
+int	check_file(char *file_path)
 {
     if(!check_file_extension(file_path))
         return (print_error("Invalid file extension"));
-    
+    return (0);
 }

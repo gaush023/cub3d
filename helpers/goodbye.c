@@ -8,12 +8,12 @@ void goodbye(t_game *game, int code, char *msg)
     write(0, "Goodbye\n", 8);
   if (game)
       exit(code);
-  if(game->window && game->mlx)
-    mlx_destroy_window(game->mlx, game->window);
+  // if(game->win && game->mlx)
+  //   mlx_destroy_window(game->mlx, game->win);
   if(game->mlx)
   {
-    mlx_destroy_display(game->mlx);
-    mlx_loop_end(game->mlx);
+    // mlx_destroy_display(game->mlx);
+    // mlx_loop_end(game->mlx);
     my_free(game->mlx, game->node);
   }
   exit(code);
