@@ -76,3 +76,11 @@ void ini_mapinfo(t_mapinfo *mapinfo)
   mapinfo->index_end_of_map = 0;
 }
 
+void set_img_zero(t_img *img)
+{
+  img->img = NULL;
+  img->addr = NULL;
+  img->pixel_bits = 0;
+  img->size_line = 0;
+}
+

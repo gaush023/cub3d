@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void set_texture_zero(t_img *img)
+void set_img_zero(t_img *img)
 {
   img->img = NULL;
   img->addr = NULL;
@@ -22,7 +22,7 @@ static void set_texture_zero(t_img *img)
 
 static void ini_texture_img(t_game *game, t_img *image, char *path)
 {
-  set_texture_zero(image);
+  set_img_zero(image);
   image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size, &game->texinfo.size);
   if (!image->img)
     goodbye(game, ERROR, "Error loading texture\n");

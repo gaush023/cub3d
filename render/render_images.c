@@ -25,5 +25,5 @@ void render_images(t_game *game)
     init_texture_pixel(game);
     init_ray(game);
     raycasting(&game->player, game);
-
+    render_frane(game);
 }

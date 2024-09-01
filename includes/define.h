@@ -13,9 +13,13 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
+# define SUCCESS 0
 # define ERROR 1
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define TEX_SIZE 64
+# define SIDE_X 0
+# define SIDE_Y 1
+# define GREY 8355711
 
 #endif

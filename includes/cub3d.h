@@ -25,11 +25,12 @@ void	ini_texture(t_texinfo *textures);
 void	ini_player(t_player *player);
 void	ini_mapinfo(t_mapinfo *mapinfo);
 void	ini_ray(t_ray *ray);
+void set_img_zero(t_img *img);
 int		*xpm_to_img(t_game *game, char *path);
 
 //render functions
 void	render_images(t_game *game);
-
+void    render_frame(t_game *game);
 //lib functions
 size_t    ft_strlen(const char *s);
 

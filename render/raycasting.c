@@ -48,19 +48,81 @@ static void perform_dda(t_game *game, t_ray *ray)
         {
             ray->sidedist_x += ray->deltadist_x;
             ray->map_x += ray->step_x;
-            ray->side = 0;
+            ray->side = SIDE_X;
         }
         else
         {
             ray->sidedist_y += ray->deltadist_y;
             ray->map_y += ray->step_y;
-            ray->side = 1;
+            ray->side = SIDE_Y;
         }
         if(ray->map_y < 0.25 || ray->map_y > data->mapinfo.height - 0.25 || ray->map_x > data->mapinfo.width - 1.25)
             break;
         else
         if(game->map[ray->map_x][ray->map_y] == '1')
             hit = true;
+    }
+}
+
+static void caluc_line_height(t_ray *ray, t_player *player, t_game *game)
+{
+    if(ray->side == 0)
+        ray->wall_dist = (ray->sidedist_x - ray->deltadist_x)
+    else 
+        ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+    ray->line_heigt = (int)(game->window_height / ray->wall_dist);
+    ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
+    if(ray->draw_start < 0)
+        ray->draw_start = 0;
+    if(ray->draw_end >= game->window_height)
+        ray->draw_end = game->window_height - 1;
+    if(ray->side == SIDE_X)
+        ray->wall_x = player->pos_y + ray->Wall_dist * ray->dir_y;
+    else 
+        ray->wall_x = player->pos_x + ray->Wall_dist * ray->dir_x;
+    ray->wall_x -= floor(ray->wall_x);
+}
+
+
+void get_texture_index(t_game *game, t_ray *ray)
+{
+    if(ray->side == SIDE_X)
+    {
+        if(ray->dir_x > 0)
+            game->texinfo.index = WEST;
+        else 
+            game->texinfo.index = EAST;
+    }
+    else {
+        if(ray->dir_y > 0)
+            game->texinfo.index = SOUTH;
+        else 
+            game->texinfo.index = NORTH;
+    }
+}
+
+void update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
+{
+    int y;
+    int color;
+
+    get_texture_index(game, ray);
+    tex->x = (int)(ray->wall_x * tex->size);
+    if((ray->side == SIDE_X && ray->dir_x < 0) || (ray->side == SIDE_Y && ray->dir_y > 0))
+        tex->x = tex->size - tex->x -1;
+    tex->step = 1.0 * tex->sie / ray->line_height;
+    tex->pos = (ray->draw_start - game->window_height / 2 + ray->line_height / 2) * tex->step;
+    y = ray->draw_start;
+    while(y < ray->draw_end)
+    {
+        tex->y = (int)tex->pos & (tex->size - 1);    
+        tex->pos += tex->step;
+        color = game->texture_pixels[tex->index][tex->y * tex->size + tex->x];
+        if(tex->index == NORTH || tex->index == SOUTH)
+            color = (color >> 1) & GREY;　
+        if(color > 0)
+            game->textrure_pixels[y][x] = color;
+        y++;
     }
 }
 
@@ -74,3 +136,14 @@ int raycasting(t_plaeyr *player, t_game *game)
     {
         init_raycasting_info(x, &ray, player);
         set_dda(&ray, player);
+        perform_dda(game, &ray);
+        cluc_line_height(&ray, player, game);
+        update_texture_pixel(&ray, game);
+        x++;
+    }
+    return (SUCCESS);
+}   
+        
+
+
+
