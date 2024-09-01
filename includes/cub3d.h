@@ -34,4 +34,7 @@ void    render_frame(t_game *game);
 //lib functions
 size_t    ft_strlen(const char *s);
 
+//read_file functions
+void read_file(char *file, t_game *game);
+
 #endif

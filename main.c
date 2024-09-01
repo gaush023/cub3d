@@ -50,16 +50,21 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
+	game.node = malloc(sizeof(t_node));
+	if (!game.node)
+		return (print_error("Error allocating memory\n"));
+	malloc_startup(game.node);
 	if (ac != 2)
 		return (print_error("Invalid number of arguments\n"));
 	if (check_file(av[1]) == ERROR)
 		return (print_error("Error parsing the file\n"));
+    read_file(av[1], &game);
 	game.node = malloc(sizeof(t_node));
 	if (!game.node)
 		return (print_error("Error allocating memory\n"));
 	malloc_startup(game.node);
 	init_game(&game);
-	malloc_end(game.node);
 	render_images(&game);
-	return (0);
+	malloc_end(game.node);
+    return (0);
 }
