@@ -7,15 +7,15 @@ void init_texture_pixel(t_game *game)
     
     if(game->texture_pixels)
         my_free_tab((void **)game->texture_pixels, game->node);
-    game->texture_pixels = my_malloc(game->window_width + 1, sizeof * game->texture_pixels,game->node);
+    game->texture_pixels = my_calloc(game->window_width + 1, sizeof * game->texture_pixels, game->node);
     if (!game->texture_pixels)
-        goodbye("Error\nMalloc failed\n", game);
+        goodbye(game, ERROR, "Malloc failed\n");
     i = 0;
     while(i < game->window_width)
     {
-        game->texture_pixels[i] = my_malloc(game->window_width + 1, sizeof * game->texture_pixels, game->node);
+        game->texture_pixels[i] = my_calloc(game->window_width + 1, sizeof * game->texture_pixels, game->node);
         if (!game->texture_pixels[i])
-            goodbye("Error\nMalloc failed\n", game);
+            goodbye(game, ERROR,"Malloc failed\n");
         i++;
     }
 }
@@ -23,7 +23,7 @@ void init_texture_pixel(t_game *game)
 void render_images(t_game *game)
 {
     init_texture_pixel(game);
-    init_ray(game);
+    ini_ray(&game->ray);
     raycasting(&game->player, game);
-    render_frane(game);
+    render_frame(game);
 }

@@ -12,14 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void set_img_zero(t_img *img)
-{
-  img->img = NULL;
-  img->addr = NULL;
-  img->pixel_bits = 0;
-  img->size_line = 0;
-}
-
 static void ini_texture_img(t_game *game, t_img *image, char *path)
 {
   set_img_zero(image);

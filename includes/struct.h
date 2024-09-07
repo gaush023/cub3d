@@ -107,6 +107,7 @@ typedef struct s_game
   t_player player;
   t_mapinfo mapinfo;
   t_texinfo texinfo;
+  t_ray ray;
   char **map;
   int **texture_pixels;
   int **textures;

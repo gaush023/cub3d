@@ -12,16 +12,16 @@
 
 NAME = cub3D
 SRCS = main.c \
-	   helpers/check_file.c helpers/goodbye.c helpers/ini.c helpers/xpm_to_img.c \
-	   helpers/print_error.c \
-	   render/render_images.c \
-	   helpers/lib/ft_strlen.c 
-	   
+	   helpers/goodbye.c helpers/ini.c helpers/xpm_to_img.c helpers/print_error.c helpers/is_space.c \
+	   render/render_images.c render/raycasting.c render/render_frame.c\
+	   helpers/lib/ft_strlen.c helpers/lib/ft_strchr.c  helpers/lib/ft_strlcpy.c \
+	   read_file/read_file.c  read_file/check_file_extension.c read_file/check_file_data.c read_file/read_map_info.c read_file/read_texture_info.c read_file/get_next_line.c \
+
+
 MALLOC = malloc_lib.a
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
-OBJS = $(SRCS:./%.c=./%.o)
 MALLOC_DIR = ./helpers/malloc_lib
 
 OBJS = $(SRCS:.c=.o)

@@ -12,12 +12,13 @@
 
 #include "../includes/cub3d.h"
 
-void    check_file_extension(char *file_path)
+void check_file_extension(char *file_path, t_game *game)
 {
     size_t len;
 
     len = ft_strlen(file_path);
     if(file_path[len - 4] == '.' && file_path[len - 3] == 'c' && file_path[len - 2] == 'u' && file_path[len - 1] == 'b')
-        goodbye("Invalid file extension\n");
+        return ;
+    goodbye(game, ERROR, "Invalid file extension\n");
 }
 

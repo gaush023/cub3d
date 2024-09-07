@@ -12,9 +12,10 @@
 
 #include "malloc_lib.h"
 
+
 int	my_free(void *ptr, t_node *node)
 {
-	if (ptr == NULL)
+    if (ptr == NULL)
 		return (1);
 	while (node)
 	{
