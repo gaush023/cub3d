@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 03:22:10 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/09/07 23:45:47 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void    render_frame(t_game *game);
 int raycasting(t_player *player, t_game *game);
 
 //lib functions
-size_t    ft_strlen(const char *s);
-size_t    ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t    ft_strlen(char *s);
+size_t    ft_strlcpy(char *dst, char *src, size_t dstsize);
 char *ft_strchr(const char *s, int c);
 
 

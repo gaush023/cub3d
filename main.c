@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:02 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 03:21:38 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/09/07 23:03:47 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	init_game(t_game *game)
 	set_data(game);
 }
 
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks cub3D");
+// }
+
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -60,7 +65,6 @@ int	main(int ac, char **av)
 	game.node = malloc(sizeof(t_node));
 	if (!game.node)
 		return (print_error("Error allocating memory\n"));
-	malloc_startup(game.node);
 	init_game(&game);
 	render_images(&game);
 	malloc_end(game.node);

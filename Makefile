@@ -6,7 +6,7 @@
 #    By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 02:01:33 by sagemura          #+#    #+#              #
-#    Updated: 2024/08/31 03:28:02 by sagemura         ###   ########.fr        #
+#    Updated: 2024/09/07 21:37:26 by sagemura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = main.c \
 
 
 MALLOC = malloc_lib.a
-CC = cc 
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 MALLOC_DIR = ./helpers/malloc_lib
