@@ -22,6 +22,7 @@
 # define SIDE_Y 1
 # define GREY 8355711
 # define BUFFER_SIZE 4096
-
+# define CEILING 0
+# define FLOOR 1
 
 #endif
