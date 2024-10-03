@@ -27,3 +27,8 @@ void render_images(t_game *game)
     raycasting(&game->player, game);
     render_frame(game);
 }
+
+int render(t_game *game)
+{
+    game->player.has_moved += move_player(game);
+    

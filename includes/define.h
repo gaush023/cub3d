@@ -24,6 +24,7 @@
 # define BUFFER_SIZE 4096
 # define CEILING 0
 # define FLOOR 1
+# define MOVESPEED 0.125
 
 
 

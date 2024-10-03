@@ -50,7 +50,8 @@ void check_file_data(t_game *game);
 //move functions
 void listen_for_key(t_game *game);
 void init_player_direction(t_game *game);
-
+int move_player(t_game *game);
+int validate_move(t_game *game, double new_x, double new_y);
 
 
 #endif

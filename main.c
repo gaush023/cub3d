@@ -67,6 +67,7 @@ int	main(int ac, char **av)
 		return (print_error("Error allocating memory\n"));
 	init_game(&game);
 	render_images(&game);
+    mlx_loop_hook(game.mlx, render, &game);
     listen_for_key(&game);
     malloc_end(game.node);
     return (0);
