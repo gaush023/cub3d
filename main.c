@@ -67,6 +67,7 @@ int	main(int ac, char **av)
 		return (print_error("Error allocating memory\n"));
 	init_game(&game);
 	render_images(&game);
-	malloc_end(game.node);
+    listen_for_key(&game);
+    malloc_end(game.node);
     return (0);
 }

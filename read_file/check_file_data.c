@@ -104,7 +104,7 @@ void	check_file_data(t_game *game)
 	print_maps(game);
 	if (is_four_xpmlines(game) == ERROR)
 		goodbye(game, ERROR, "Invalid map\n xpm data is not enough\n");
-    get_celling_floor_color(game);
+    //get_celling_floor_color(game);
 	printf("game->texinfo.north: %s$\n", game->texinfo.north);
 	printf("game->texinfo.south: %s$\n", game->texinfo.south);
 	printf("game->texinfo.west: %s$\n", game->texinfo.west);

@@ -12,7 +12,6 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
 #include "library.h"
 
 enum e_direction
@@ -25,7 +24,7 @@ enum e_direction
 
 typedef struct s_player
 {
-  char *direction;
+  char direction;
   double pos_x;
   double pos_y;
   double direction_x;
@@ -33,8 +32,8 @@ typedef struct s_player
   double plane_x;
   double plane_y;
   int has_moved;
-  int mov_x;
-  int mov_y;
+  int move_x;
+  int move_y;
   int rotate;
 } t_player;
 
