@@ -39,7 +39,7 @@ int key_release_handler(int keycode, t_game *game)
 }
 
 
-void listne_for_key(t_game *game)
+void listen_for_key(t_game *game)
 {
     init_player_direction(game);
     mlx_hook(game->win, ClientMessage, NoEventMask, close_game, game);

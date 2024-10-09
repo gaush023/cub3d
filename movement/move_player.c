@@ -53,4 +53,8 @@ int move_player(t_game *game)
         moved += move_right(game);
     if(game->player.move_x == 1)
         moved += move_left(game);
+    if(game->player.rotate == 1)
+        moved += rotate_player(game, game->player.rotate);
+    return (moved);
 }
+

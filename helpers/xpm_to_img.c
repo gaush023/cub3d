@@ -14,11 +14,11 @@
 
 static void ini_texture_img(t_game *game, t_img *image, char *path)
 {
-  set_img_zero(image);
-  image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size, &game->texinfo.size);
-  if (!image->img)
-    goodbye(game, ERROR, "Error loading texture\n");
-  image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
+    set_img_zero(image);
+    image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size, &game->texinfo.size);
+    if (!image->img)
+        goodbye(game, ERROR, "Error loading texture\n");
+    image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
 }
 
 int *xpm_to_img(t_game *game, char *path)
@@ -28,6 +28,7 @@ int *xpm_to_img(t_game *game, char *path)
     int x;
     int y;
 
+    printf("path: %s\n", path);
     ini_texture_img(game, &tmp, path);
     buffer = my_calloc(1, sizeof * buffer * game->texinfo.size * game->texinfo.size, game->node);
     if (!buffer)

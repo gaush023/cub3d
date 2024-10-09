@@ -28,7 +28,13 @@ void render_images(t_game *game)
     render_frame(game);
 }
 
-int render(t_game *game)
+int cub3d_render(t_game *game)
 {
+    int tmp_times;
+
+    tmp_times = game->player.has_moved;
     game->player.has_moved += move_player(game);
-    
+    if (game->player.has_moved != tmp_times)
+        render_images(game);
+    return (0);
+}

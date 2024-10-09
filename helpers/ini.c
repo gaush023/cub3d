@@ -52,7 +52,7 @@ void ini_ray(t_ray *ray)
 
 void ini_player(t_player *player)
 {
-  player->direction = "\0";
+  player->direction = '\0';
   player->pos_x = 0;
   player->pos_y = 0;
   player->direction_x = 0;
@@ -60,8 +60,8 @@ void ini_player(t_player *player)
   player->plane_x = 0;
   player->plane_y = 0;
   player->has_moved = 0;
-  player->mov_x = 0;
-  player->mov_y = 0;
+  player->move_x = 0;
+  player->move_y = 0;
   player->rotate = 0;
 }
 
