@@ -15,6 +15,8 @@
 
 void	set_textures(t_game *game)
 {
+  printf("set_textures\n");
+  printf("game->texinfo.north: %s\n", game->texinfo.north);
 	game->textures = my_calloc(5, sizeof * game->textures, game->node);
 	if (!game->textures)
 		goodbye(game, ERROR, "Error allocating memory\n");
@@ -27,7 +29,9 @@ void	set_textures(t_game *game)
 void	set_data(t_game *game)
 {
 	ini_player(&game->player);
-	ini_texture(&game->texinfo);
+  printf("set_data 0 game->texinfo.north: %s\n", game->texinfo.north);
+  ini_texture(&game->texinfo);
+  printf("set_data game->texinfo.north: %s\n", game->texinfo.north);
 	set_textures(game);
 	game->map = NULL;
 	ini_mapinfo(&game->mapinfo);

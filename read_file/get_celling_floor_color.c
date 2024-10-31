@@ -4,24 +4,16 @@ static size_t coutout_line(int *tmp, size_t row, size_t column, t_game *game)
 {
     int start_pos;
 
-//    while (game->mapinfo.file[row][column] != ',' && game->mapinfo.file[row][column] != '\0')
-    printf("game->mapinfo.file[row][column] = %c\n", game->mapinfo.file[row][column]);
-    printf("row = %zu, column = %zu\n", row, column);
     start_pos = column;
     while(game->mapinfo.file[row][column] != ',' )
     {
-        printf("game->mapinfo.file[row][column] = %c\n", game->mapinfo.file[row][column]);
         if (!ft_isdigit(game->mapinfo.file[row][column]) && !is_space(game->mapinfo.file[row][column]))
-        {
-            printf("game->mapinfo.file[row][column] = %c\n", game->mapinfo.file[row][column]);
-            printf("row = %zu, column = %zu\n", row, column);
             goodbye(game, ERROR, "rgb color format is invalid aa\n");
-        }
         column++;
     }
     *tmp = ft_atoi(&game->mapinfo.file[row][start_pos]);
     if (*tmp < 0 || *tmp > 255)
-        goodbye(game, ERROR, "rgb color format is invalid aa\n");
+        goodbye(game, ERROR, "rgb color format is invalid bb\n");
     return (column);
 }
 
@@ -45,10 +37,7 @@ static void copy_rgb_color_helper(size_t row, size_t column, t_game *game, int t
     }
     column = coutout_line(&tmp[0], row, column, game);
     column = coutout_line(&tmp[1], row, column + 1, game);
-    printf("tmp[0] = %d, tmp[1] = %d\n", tmp[0], tmp[1]);
-    printf("game->mapinfo.file[row][column] = %c\n", game->mapinfo.file[row][column]);
-    printf("row = %zu, column = %zu\n", row, column);
-    column = coutout_line(&tmp[2], row, column, game);
+    tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1]);
 }
 
 static void copy_rgb_color(size_t row, size_t column, t_game *game, int type)
@@ -88,13 +77,14 @@ void get_celling_floor_color(t_game *game)
             while(is_space(game->mapinfo.file[row][column]))
                 column++;
             if (game->mapinfo.file[row][column] == 'C')
-                 copy_rgb_color_helper( row,  column,  game, CEILING);
+                 copy_rgb_color( row,  column,  game, CEILING);
             else if (game->mapinfo.file[row][column] == 'F')
                 copy_rgb_color(row, column, game, FLOOR);
             column++;
         }
         row++;
     }
-    write(1, "\n", 1);
+    printf("ceiling color: %d %d %d\n", game->texinfo.ceiling[0], game->texinfo.ceiling[1], game->texinfo.ceiling[2]);
+    printf("floor color: %d %d %d\n", game->texinfo.floor[0], game->texinfo.floor[1], game->texinfo.floor[2]);
     return ;
 }

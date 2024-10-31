@@ -8,9 +8,6 @@ void read_texture_info(t_game *game)
     printf("game->texinfo.south: %s\n", game->texinfo.south);
     printf("game->texinfo.west: %s\n", game->texinfo.west);
     printf("game->texinfo.east: %s\n", game->texinfo.east);
-
-    printf("game->texinfo.floor: %d\n", *game->texinfo.floor);
-    printf("game->texinfo.ceiling: %d\n", *game->texinfo.ceiling);
     printf("--------------------------------\n\n");
     return ;
 }

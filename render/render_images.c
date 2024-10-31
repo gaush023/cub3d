@@ -1,6 +1,5 @@
 #include "../includes/cub3d.h"
 
-
 void init_texture_pixel(t_game *game)
 {
     int i; 

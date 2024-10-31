@@ -21,24 +21,39 @@ void	print_maps(t_game *game)
 	return ;
 }
 
+char  *reforamat_xpm_path(t_game *game, char *path)
+{
+  char *tmp;
+  size_t i;
+  size_t j;
+
+  i = 0;
+  j = 0;
+  tmp = NULL;
+  while(ft_isalpha(path[i]) == true)
+      i++;
+  while (is_space(path[i]) == true)
+      i++;
+  while(path[i] != '\n')
+    tmp[j++] = path[i++];
+  printf("tmp: %s\n", tmp);
+  return(my_strndup(tmp, ft_strlen(tmp), game->node));
+}
+
 void	which_direction_and_copy(t_game *game, size_t row, size_t column)
 {
 	if (game->mapinfo.file[row][column] == 'N' && game->mapinfo.file[row][column
 		+ 1] == 'O')
-		game->texinfo.north = my_strndup(&game->mapinfo.file[row][column],
-				ft_strlen(&game->mapinfo.file[row][column]) - 1, game->node);
+		game->texinfo.north = reforamat_xpm_path(game, &game->mapinfo.file[row][column]);
 	else if (game->mapinfo.file[row][column] == 'S'
 		&& game->mapinfo.file[row][column + 1] == 'O')
-		game->texinfo.south = my_strndup(&game->mapinfo.file[row][column],
-				ft_strlen(&game->mapinfo.file[row][column]) - 1, game->node);
+		game->texinfo.south = reforamat_xpm_path(game, &game->mapinfo.file[row][column]);
 	else if (game->mapinfo.file[row][column] == 'W'
 		&& game->mapinfo.file[row][column + 1] == 'E')
-		game->texinfo.west = my_strndup(&game->mapinfo.file[row][column],
-				ft_strlen(&game->mapinfo.file[row][column]) - 1, game->node);
+		game->texinfo.west = reforamat_xpm_path(game, &game->mapinfo.file[row][column]);
 	else if (game->mapinfo.file[row][column] == 'E'
 		&& game->mapinfo.file[row][column + 1] == 'A')
-		game->texinfo.east = my_strndup(&game->mapinfo.file[row][column],
-				ft_strlen(&game->mapinfo.file[row][column]) - 1, game->node);
+		game->texinfo.east = reforamat_xpm_path(game, &game->mapinfo.file[row][column]);
 	else
 		goodbye(game, ERROR, "Invalid map\nxpm file is invalid direction\n");
 }

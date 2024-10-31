@@ -41,6 +41,7 @@ size_t    ft_strlcpy(char *dst, char *src, size_t dstsize);
 char *ft_strchr(const char *s, int c);
 int ft_isdigit(int c);
 int ft_atoi(char *str);
+bool ft_isalpha(int c);
 
 //read_file functions
 void read_file(char *file, t_game *game);

@@ -28,7 +28,6 @@ int *xpm_to_img(t_game *game, char *path)
     int x;
     int y;
 
-    printf("path: %s\n", path);
     ini_texture_img(game, &tmp, path);
     buffer = my_calloc(1, sizeof * buffer * game->texinfo.size * game->texinfo.size, game->node);
     if (!buffer)
