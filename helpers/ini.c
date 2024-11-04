@@ -42,6 +42,7 @@ void ini_ray(t_ray *ray)
   ray->line_height = 0;
   ray->draw_start = 0;
   ray->draw_end = 0;
+  printf("done ini ray\n");
 }
 
 

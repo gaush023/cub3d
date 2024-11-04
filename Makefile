@@ -30,19 +30,19 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C $(MALLOC_DIR)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC)
+	make -C $(MALLOC_DIR)
+	$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@make clean -C $(MALLOC_DIR)
-	@rm -f $(OBJS)
+	make clean -C $(MALLOC_DIR)
+	rm -f $(OBJS)
 
 fclean: clean
-	@make fclean -C $(MALLOC_DIR)
-	@rm -f $(NAME)
+	make fclean -C $(MALLOC_DIR)
+	rm -f $(NAME)
 
 re: fclean all
 

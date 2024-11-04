@@ -84,7 +84,5 @@ void get_celling_floor_color(t_game *game)
         }
         row++;
     }
-    printf("ceiling color: %d %d %d\n", game->texinfo.ceiling[0], game->texinfo.ceiling[1], game->texinfo.ceiling[2]);
-    printf("floor color: %d %d %d\n", game->texinfo.floor[0], game->texinfo.floor[1], game->texinfo.floor[2]);
     return ;
 }

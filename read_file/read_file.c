@@ -6,5 +6,6 @@ void read_file(char *file_path, t_game *game)
     read_map_info(file_path, game);
     check_file_data(game);
     read_texture_info(game);
+    printf("done read file\n");
 }
 

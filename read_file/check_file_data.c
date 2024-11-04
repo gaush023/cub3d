@@ -1,26 +1,5 @@
 #include "../includes/cub3d.h"
 
-void	print_maps(t_game *game)
-{
-	size_t	row;
-	size_t	column;
-
-	row = 0;
-	column = 0;
-	while (game->mapinfo.file[row] != NULL)
-	{
-		column = 0;
-		while (game->mapinfo.file[row][column])
-		{
-			write(1, &game->mapinfo.file[row][column], 1);
-			column++;
-		}
-		row++;
-	}
-	write(1, "\n", 1);
-	return ;
-}
-
 char  *reforamat_xpm_path(t_game *game, char *path)
 {
   char *tmp;
@@ -29,14 +8,13 @@ char  *reforamat_xpm_path(t_game *game, char *path)
 
   i = 0;
   j = 0;
-  tmp = NULL;
+  tmp = my_strdup("", game->node);
   while(ft_isalpha(path[i]) == true)
       i++;
   while (is_space(path[i]) == true)
       i++;
   while(path[i] != '\n')
     tmp[j++] = path[i++];
-  printf("tmp: %s\n", tmp);
   return(my_strndup(tmp, ft_strlen(tmp), game->node));
 }
 
@@ -116,10 +94,8 @@ bool	is_four_xpmlines(t_game *game)
 
 void	check_file_data(t_game *game)
 {
-	print_maps(game);
+  printf("check_file_data\n");
 	if (is_four_xpmlines(game) == ERROR)
 		goodbye(game, ERROR, "Invalid map\n xpm data is not enough\n");
-    get_celling_floor_color(game);
-    printf("north: %s\n", game->texinfo.north);
 	return ;
 }

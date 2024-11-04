@@ -15,8 +15,6 @@
 
 void	set_textures(t_game *game)
 {
-  printf("set_textures\n");
-  printf("game->texinfo.north: %s\n", game->texinfo.north);
 	game->textures = my_calloc(5, sizeof * game->textures, game->node);
 	if (!game->textures)
 		goodbye(game, ERROR, "Error allocating memory\n");
@@ -28,26 +26,30 @@ void	set_textures(t_game *game)
 
 void	set_data(t_game *game)
 {
+  printf("start set data");
 	ini_player(&game->player);
-  printf("set_data 0 game->texinfo.north: %s\n", game->texinfo.north);
+  printf("done ini player");
   ini_texture(&game->texinfo);
-  printf("set_data game->texinfo.north: %s\n", game->texinfo.north);
-	set_textures(game);
+  printf("done ini texture");
+  set_textures(game);
+  printf("done set textures");
 	game->map = NULL;
 	ini_mapinfo(&game->mapinfo);
 	game->texture_pixels = NULL;
 	game->textures = NULL;
+  printf("done set data");
 }
 
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	if (!game->mlx)
+	printf("done init mlx\n");
+  if (!game->mlx)
 		print_error("Error initializing mlx\n");
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
+  printf("done init win\n");
 	if (!game->win)
 		print_error("Error initializing window\n");
-	set_data(game);
 }
 
 // __attribute__((destructor)) static void destructor()
@@ -58,22 +60,24 @@ void	init_game(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
-
+  
 	game.node = malloc(sizeof(t_node));
 	if (!game.node)
 		return (print_error("Error allocating memory\n"));
 	malloc_startup(game.node);
 	if (ac != 2)
-		return (print_error("Invalid number of arguments\n"));
-    read_file(av[1], &game);
+    return (print_error("Invalid number of arguments\n"));
+  read_file(av[1], &game);
 	game.node = malloc(sizeof(t_node));
 	if (!game.node)
-		return (print_error("Error allocating memory\n"));
-	init_game(&game);
-	render_images(&game);
-    mlx_loop_hook(game.mlx, cub3d_render, &game);
-    mlx_loop(game.mlx);
-    listen_for_key(&game);
-    malloc_end(game.node);
-    return (0);
+    return (print_error("Error allocating memory\n"));
+  init_game(&game);
+  printf("done init game\n");
+  set_data(&game);
+  render_images(&game);
+  mlx_loop_hook(game.mlx, cub3d_render, &game);
+  mlx_loop(game.mlx);
+  listen_for_key(&game);
+  malloc_end(game.node);
+  return (0);
 }
