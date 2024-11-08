@@ -30,6 +30,8 @@ int *xpm_to_img(t_game *game, char *path)
 
     ini_texture_img(game, &tmp, path);
     buffer = my_calloc(1, sizeof * buffer * game->texinfo.size * game->texinfo.size, game->node);
+    printf("done ini\n");
+    printf("texinfo.size %d\n", game->texinfo.size);
     if (!buffer)
       goodbye(game, ERROR, "Error allocating memory\n");
     y = 0;

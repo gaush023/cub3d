@@ -18,7 +18,8 @@ void	set_textures(t_game *game)
 	game->textures = my_calloc(5, sizeof * game->textures, game->node);
 	if (!game->textures)
 		goodbye(game, ERROR, "Error allocating memory\n");
-	game->textures[NORTH] = xpm_to_img(game->mlx, game->texinfo.north);
+  printf("set_textures\n");
+  game->textures[NORTH] = xpm_to_img(game->mlx, game->texinfo.north);
 	game->textures[SOUTH] = xpm_to_img(game->mlx, game->texinfo.south);
 	game->textures[WEST] = xpm_to_img(game->mlx, game->texinfo.west);
 	game->textures[EAST] = xpm_to_img(game->mlx, game->texinfo.east);
@@ -26,11 +27,11 @@ void	set_textures(t_game *game)
 
 void	set_data(t_game *game)
 {
-  printf("start set data");
+  printf("start set data\n");
 	ini_player(&game->player);
-  printf("done ini player");
+  printf("done ini player\n");
   ini_texture(&game->texinfo);
-  printf("done ini texture");
+  printf("done ini texture\n");
   set_textures(game);
   printf("done set textures");
 	game->map = NULL;
