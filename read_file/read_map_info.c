@@ -78,4 +78,5 @@ void	read_map_info(char *file_path, t_game *game)
 		copy_file_data(game, colunm, row, i);
 		close(game->mapinfo.fd);
 	}
+    printf("game->mapinfo.line_count = %d\n", game->mapinfo.line_count);
 }

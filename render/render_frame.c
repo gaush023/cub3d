@@ -2,11 +2,17 @@
 
 void init_img(t_game *game, t_img *image, int width, int height)
 {
-    set_img_zero(image);        
+    set_img_zero(image);       
+    if(!game->mlx)
+        goodbye(game, ERROR, "Error initializing mlx\n");
     image->img = mlx_new_image(game->mlx, width, height);
+    printf("size_line: %d\n", image->size_line);
     if (!image->img)
         goodbye(game, ERROR, "Error creating image\n");
     image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
+    printf("image->addr: %p\n", image->addr);
+    printf("size_line: %d\n", image->size_line);
+    printf("pixel_bits: %d\n", image->pixel_bits);
 }
 
 void set_image_pixel(t_img *image, int x, int y, int color)

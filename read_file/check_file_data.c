@@ -2,20 +2,30 @@
 
 char  *reforamat_xpm_path(t_game *game, char *path)
 {
-  char *tmp;
-  size_t i;
-  size_t j;
+    char *tmp;
+    size_t tmp_pos;
+    size_t i;
+    size_t j;
 
-  i = 0;
-  j = 0;
-  tmp = my_strdup("", game->node);
-  while(ft_isalpha(path[i]) == true)
-      i++;
-  while (is_space(path[i]) == true)
-      i++;
-  while(path[i] != '\n')
-    tmp[j++] = path[i++];
-  return(my_strndup(tmp, ft_strlen(tmp), game->node));
+    i = 0;
+    j = 0;
+    
+    while(ft_isalpha(path[i]) == true)
+        i++;
+    while (is_space(path[i]) == true)
+        i++;
+    tmp_pos = i;
+    while(path[i] != '\n')
+        i++;
+    tmp = my_calloc(1, sizeof *tmp * (i - tmp_pos + 1), game->node);
+    while(tmp_pos < i)
+    {
+        tmp[j] = path[tmp_pos];
+        j++;
+        tmp_pos++;
+    }
+    tmp[j] = '\0';
+    return (tmp);
 }
 
 void	which_direction_and_copy(t_game *game, size_t row, size_t column)
@@ -82,8 +92,8 @@ bool	is_four_xpmlines(t_game *game)
 				copy_xpm_path(game, row, column);
 			if (game->texinfo.north != NULL && game->texinfo.south != NULL
 				&& game->texinfo.west != NULL && game->texinfo.east != NULL)
-				return (SUCCESS);
-			column++;
+                return (SUCCESS);
+            column++;
 		}
 		row++;
 	}
@@ -94,7 +104,6 @@ bool	is_four_xpmlines(t_game *game)
 
 void	check_file_data(t_game *game)
 {
-  printf("check_file_data\n");
 	if (is_four_xpmlines(game) == ERROR)
 		goodbye(game, ERROR, "Invalid map\n xpm data is not enough\n");
 	return ;

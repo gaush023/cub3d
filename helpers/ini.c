@@ -42,7 +42,6 @@ void ini_ray(t_ray *ray)
   ray->line_height = 0;
   ray->draw_start = 0;
   ray->draw_end = 0;
-  printf("done ini ray\n");
 }
 
 
@@ -79,5 +78,6 @@ void set_img_zero(t_img *img)
   img->addr = NULL;
   img->pixel_bits = 0;
   img->size_line = 0;
+    img->endian = 0;
 }
 

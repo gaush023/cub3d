@@ -38,6 +38,8 @@ static void copy_rgb_color_helper(size_t row, size_t column, t_game *game, int t
     column = coutout_line(&tmp[0], row, column, game);
     column = coutout_line(&tmp[1], row, column + 1, game);
     tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1]);
+    if (tmp[2] < 0 || tmp[2] > 255)
+        goodbye(game, ERROR, "rgb color format is invalid cc\n");
 }
 
 static void copy_rgb_color(size_t row, size_t column, t_game *game, int type)
@@ -62,6 +64,20 @@ static void copy_rgb_color(size_t row, size_t column, t_game *game, int type)
     copy_rgb_color_helper(row, start_pos, game, type);
 }
 
+static unsigned long convert_rgb_to_hex(int *rgb)
+{
+    unsigned long result;
+    int r;
+    int g;
+    int b;
+
+    r = rgb[0];
+    g = rgb[1];
+    b = rgb[2];
+    result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+    return (result);
+}
+
 void get_celling_floor_color(t_game *game)
 {
     size_t row;
@@ -84,5 +100,9 @@ void get_celling_floor_color(t_game *game)
         }
         row++;
     }
+    if (!game->texinfo.ceiling || !game->texinfo.floor)
+        goodbye(game, ERROR, "rgb color format is invalid\n");
+    game->texinfo.hex_ceiling = convert_rgb_to_hex(game->texinfo.ceiling);
+    game->texinfo.hex_floor = convert_rgb_to_hex(game->texinfo.floor);
     return ;
 }

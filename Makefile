@@ -22,7 +22,7 @@ SRCS = main.c \
 MALLOC = malloc_lib.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS =  -L./minilibx-linux -lmlx -lXext -lX11 -lm 
 MALLOC_DIR = ./helpers/malloc_lib
 
 OBJS = $(SRCS:.c=.o)
@@ -31,18 +31,18 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(MALLOC_DIR)
-	$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC) $(MLXFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -C $(MALLOC_DIR)
-	rm -f $(OBJS)
+	rm -rf $(OBJS)
 
 fclean: clean
 	make fclean -C $(MALLOC_DIR)
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
