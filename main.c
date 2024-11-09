@@ -73,9 +73,9 @@ int	main(int ac, char **av)
     init_game(&game);
     set_data(&game);
     render_images(&game);
+    listen_for_key(&game);
     mlx_loop_hook(game.mlx, cub3d_render, &game);
     mlx_loop(game.mlx);
-    listen_for_key(&game);
     malloc_end(game.node);
     return (0);
 }

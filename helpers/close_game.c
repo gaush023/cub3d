@@ -11,8 +11,8 @@ int close_game(t_game *game)
         mlx_destroy_window(game->mlx, game->win);
     if(game->mlx)
     {
-       // mlx_destroy_display(game->mlx); for linux
-       // mlx_loop_end(game->mlx); for linux
+       mlx_destroy_display(game->mlx); 
+       mlx_loop_end(game->mlx); 
        my_free(game->mlx, game->node);
     }
     my_free(game,game->node);
