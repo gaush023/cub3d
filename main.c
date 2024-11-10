@@ -27,8 +27,6 @@ void	set_textures(t_game *game)
 
 void	set_data(t_game *game)
 {
-    ini_player(&game->player);
-    ini_texture(&game->texinfo);
     set_textures(game);
 	game->map = NULL;
 	ini_mapinfo(&game->mapinfo);
@@ -39,11 +37,9 @@ void	set_data(t_game *game)
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
+    printf("game->mlx: %p\n", game->mlx);
     if (!game->mlx)
 		print_error("Error initializing mlx\n");
-    printf("mlx: %p\n", game->mlx);
-    printf("WIN_WIDTH: %d\n", WIN_WIDTH);
-    printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
     game->window_width = WIN_WIDTH;
     game->window_height = WIN_HEIGHT;
     game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");

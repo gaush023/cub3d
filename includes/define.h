@@ -15,8 +15,8 @@
 
 # define SUCCESS 0
 # define ERROR 1
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
 # define TEX_SIZE 64
 # define SIDE_X 0
 # define SIDE_Y 1

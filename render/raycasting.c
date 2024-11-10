@@ -3,8 +3,9 @@
 
 void init_raycasting_info(int x, t_ray *ray, t_player *player, t_game *game)
 {
+    (void)game;
     ini_ray(ray);
-    ray->camera_x = 2 * x / (double)game->window_width - 1;
+    ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
     ray->dir_x = player->direction_x + player->plane_x * ray->camera_x;
     ray->dir_y = player->direction_y + player->plane_y * ray->camera_x;
     ray->map_x = (int)player->pos_x;
@@ -66,14 +67,21 @@ static void perform_dda(t_game *game, t_ray *ray)
 
 static void caluc_line_height(t_ray *ray, t_player *player, t_game *game)
 {
+    printf("ray->sidedist_x = %f\n", ray->sidedist_x);
+    printf("ray->sidedist_y = %f\n", ray->sidedist_y);
+    printf("ray->deltadist_x = %f\n", ray->deltadist_x);
+    printf("ray->deltadist_y = %f\n", ray->deltadist_y);
     if(ray->side == 0)
         ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
     else 
         ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+    printf("ray->wall_dist = %f\n", ray->wall_dist);
     ray->line_height = (int)(game->window_height / ray->wall_dist);
+    printf("ray->line_height = %d\n", ray->line_height);
     ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
     if(ray->draw_start < 0)
         ray->draw_start = 0;
+    ray->draw_end = ray->line_height / 2 + game->window_height / 2;
     if(ray->draw_end >= game->window_height)
         ray->draw_end = game->window_height - 1;
     if(ray->side == SIDE_X)
@@ -105,14 +113,17 @@ void update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
 {
     int y;
     int color;
+    
 
     get_texture_index(game, ray);
     tex->x = (int)(ray->wall_x * tex->size);
-    if((ray->side == SIDE_X && ray->dir_x < 0) || (ray->side == SIDE_Y && ray->dir_y > 0))
+    if((ray->side == 0 && ray->dir_x < 0) || (ray->side == 1 && ray->dir_y > 0))
         tex->x = tex->size - tex->x -1;
     tex->step = 1.0 * tex->size / ray->line_height;
     tex->pos = (ray->draw_start - game->window_height / 2 + ray->line_height / 2) * tex->step;
     y = ray->draw_start;
+    printf("y = %d\n", y);
+    printf("ray->draw_end = %d\n", ray->draw_end);
     while(y < ray->draw_end)
     {
         tex->y = (int)tex->pos & (tex->size - 1);    
@@ -122,8 +133,11 @@ void update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
             color = (color >> 1) & GREY;
         if(color > 0)
             game->texture_pixels[y][x] = color;
+        printf("game->texture_pixels[y][x] = %d\n", game->texture_pixels[y][x]);
         y++;
     }
+    printf("end of update_texture_pixel\n");
+    exit(0);
 }
 
 int raycasting(t_player *player, t_game *game)
