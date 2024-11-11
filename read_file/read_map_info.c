@@ -24,6 +24,8 @@ static size_t	get_line_counts(char *file_path, t_game *game)
 	return (row);
 }
 
+
+
 void	copy_file_data(t_game *game, size_t column, size_t row, size_t i)
 {
 	char	*line;
@@ -39,10 +41,7 @@ void	copy_file_data(t_game *game, size_t column, size_t row, size_t i)
 			return (my_free_tab((void *)game->mapinfo.file, game->node));
 		}
 		while (line[i] != '\0')
-		{
-			game->mapinfo.file[row][column++] = line[i];
-			i++;
-		}
+			game->mapinfo.file[row][column++] = line[i++];
 		game->mapinfo.file[row++][column] = '\0';
 		column = 0;
 		i = 0;
@@ -78,5 +77,4 @@ void	read_map_info(char *file_path, t_game *game)
 		copy_file_data(game, colunm, row, i);
 		close(game->mapinfo.fd);
 	}
-    printf("game->mapinfo.line_count = %d\n", game->mapinfo.line_count);
 }

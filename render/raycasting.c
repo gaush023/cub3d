@@ -6,12 +6,22 @@ void init_raycasting_info(int x, t_ray *ray, t_player *player, t_game *game)
     (void)game;
     ini_ray(ray);
     ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+    printf("ray->camera_x = %f\n", ray->camera_x);
     ray->dir_x = player->direction_x + player->plane_x * ray->camera_x;
+    printf("ray->dir_x = %f\n", ray->dir_x);
     ray->dir_y = player->direction_y + player->plane_y * ray->camera_x;
+    printf("ray->dir_y = %f\n", ray->dir_y);
+    printf("player->pos_x = %f\n", player->pos_x); 
     ray->map_x = (int)player->pos_x;
+    printf("ray->map_x = %d\n", ray->map_x);
     ray->map_y = (int)player->pos_y;
+    printf("player->pos_y = %f\n", player->pos_y);
+    printf("ray->map_y = %d\n", ray->map_y);
     ray->deltadist_x = fabs(1 / ray->dir_x);
+    printf("ray->deltadist_x = %f\n", ray->deltadist_x);
     ray->deltadist_y = fabs(1 / ray->dir_y);
+    printf("ray->deltadist_x = %f\n", ray->deltadist_x);
+    exit(0);
 }
 
 static void set_dda(t_ray *ray, t_player *player)
@@ -137,7 +147,6 @@ void update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
         y++;
     }
     printf("end of update_texture_pixel\n");
-    exit(0);
 }
 
 int raycasting(t_player *player, t_game *game)

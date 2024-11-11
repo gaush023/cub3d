@@ -55,6 +55,8 @@ int move_player(t_game *game)
         moved += move_left(game);
     if(game->player.rotate == 1)
         moved += rotate_player(game, game->player.rotate);
+    printf("player->pos_x = %f\n", game->player.pos_x);
+    printf("player->pos_y = %f\n", game->player.pos_y);
     return (moved);
 }
 

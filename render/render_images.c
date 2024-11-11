@@ -24,6 +24,7 @@ void render_images(t_game *game)
 {
     init_texture_pixel(game);
     ini_ray(&game->ray);
+    init_player_direction(game);
     raycasting(&game->player, game);
     render_frame(game);
 }

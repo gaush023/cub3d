@@ -37,6 +37,7 @@ void	set_data(t_game *game)
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
+    init_player_direction(game);
     printf("game->mlx: %p\n", game->mlx);
     if (!game->mlx)
 		print_error("Error initializing mlx\n");
