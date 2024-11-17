@@ -27,5 +27,22 @@
 # define MOVESPEED 0.125
 # define ROTSPEED 0.015
 
+// X11 keycodes (simplified)
+#define XK_Escape     0xff1b  // Escape key
+#define XK_Left       0xff51  // Left arrow key
+#define XK_Right      0xff53  // Right arrow key
+#define XK_w          0x0077  // 'w' key
+#define XK_a          0x0061  // 'a' key
+#define XK_s          0x0073  // 's' key
+#define XK_d          0x0064  // 'd' key
+
+// X11 event masks
+#define KeyPress          2
+#define KeyRelease        3
+#define ClientMessage     33
+#define NoEventMask       0L
+#define KeyPressMask      (1L<<0)
+#define KeyReleaseMask    (1L<<1)
+
 
 #endif
