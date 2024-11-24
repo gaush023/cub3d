@@ -104,7 +104,5 @@ void get_celling_floor_color(t_game *game)
         goodbye(game, ERROR, "rgb color format is invalid\n");
     game->texinfo.hex_ceiling = convert_rgb_to_hex(game->texinfo.ceiling);
     game->texinfo.hex_floor = convert_rgb_to_hex(game->texinfo.floor);
-    printf("game->texinfo.hex_ceiling: %ld\n", game->texinfo.hex_ceiling);
-    printf("game->texinfo.hex_floor: %ld\n", game->texinfo.hex_floor);
     return ;
 }

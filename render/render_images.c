@@ -10,7 +10,6 @@ void init_texture_pixel(t_game *game)
     if (!game->texture_pixels)
         goodbye(game, ERROR, "Malloc failed\n");
     i = 0;
-    printf("game->window_width = %d\n", game->window_width);
     while(i < game->window_width)
     {
         game->texture_pixels[i] = my_calloc(game->window_width + 1, sizeof * game->texture_pixels, game->node);

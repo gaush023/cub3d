@@ -26,17 +26,14 @@ void set_frame_pixel(t_game *game, t_img *image, int x, int y)
 {
     if(game->texture_pixels[y][x] > 0)
     {
-        printf("game->texture_pixels[y][x] = %d\n", game->texture_pixels[y][x]);
         set_image_pixel(image, x, y, game->texture_pixels[y][x]);
     }
     else if(y < game->window_height / 2)
     {
-        printf("game->texinfo.hex_ceiling = %ld\n", game->texinfo.hex_ceiling);
         set_image_pixel(image, x, y, game->texinfo.hex_ceiling);
     }
     else if(y < game->window_height - 1)
     {
-        printf("game->texinfo.hex_floor = %ld\n", game->texinfo.hex_floor);
         set_image_pixel(image, x, y, game->texinfo.hex_floor);
     }
 }

@@ -18,7 +18,6 @@ void	set_textures(t_game *game)
 	game->textures = my_calloc(5, sizeof * game->textures, game->node);
 	if (!game->textures)
 		goodbye(game, ERROR, "Error allocating memory\n");
-    printf("game->mlx: %p\n", game->mlx);
     game->textures[NORTH] = xpm_to_img(game, game->texinfo.north);
     game->textures[SOUTH] = xpm_to_img(game, game->texinfo.south);
     game->textures[WEST] = xpm_to_img(game, game->texinfo.west);
@@ -28,7 +27,6 @@ void	set_textures(t_game *game)
 void	set_data(t_game *game)
 {
     set_textures(game);
-    printf("game->mlx: %p\n", game->mlx);
 	game->texture_pixels = NULL;
 }
 
@@ -36,7 +34,6 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
     init_player_direction(game);
-    printf("game->mlx: %p\n", game->mlx);
     if (!game->mlx)
 		print_error("Error initializing mlx\n");
     game->window_width = WIN_WIDTH;

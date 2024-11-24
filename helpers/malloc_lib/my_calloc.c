@@ -12,7 +12,7 @@
 
 #include "malloc_lib.h"
 #include <unistd.h>
-# define SIZE_MAX 9223372036854775807
+//# define SIZE_MAX 9223372036854775807
 
 static void	*ft_memset(void *b, int c, size_t len)
 {

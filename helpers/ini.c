@@ -18,8 +18,6 @@ void ini_texture(t_texinfo *textures)
     textures->ceiling = 0;
     textures->hex_floor = 0x0;
     textures->hex_ceiling = 0x0;
-    printf("textures->hex_floor = %ld\n", textures->hex_floor);
-    printf("textures->hex_ceiling = %ld\n", textures->hex_ceiling);
     textures->size = TEX_SIZE;
     textures->step = 0.0;
     textures->pos = 0.0;
