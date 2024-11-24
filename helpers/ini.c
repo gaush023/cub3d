@@ -76,10 +76,10 @@ void ini_mapinfo(t_mapinfo *mapinfo)
 
 void set_img_zero(t_img *img)
 {
-  img->img = NULL;
-  img->addr = NULL;
-  img->pixel_bits = 0;
-  img->size_line = 0;
+    img->img = NULL;
+    img->addr = NULL;
+    img->pixel_bits = 0;
+    img->size_line = 0;
     img->endian = 0;
 }
 

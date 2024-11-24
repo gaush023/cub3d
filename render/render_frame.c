@@ -19,10 +19,6 @@ void set_image_pixel(t_img *image, int x, int y, int color)
 
     pixel = y * (image->size_line / 4) + x;
     image->addr[pixel] = color;
-    printf("image->size_line = %d\n", image->size_line);
-    printf("pixel = %d\n", pixel);
-    printf("color = %d\n", color);
-    printf("image->addr[pixel] = %d\n", image->addr[pixel]);
 }
 
 

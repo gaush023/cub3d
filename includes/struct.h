@@ -16,10 +16,10 @@
 
 enum e_direction
 {
-  NORTH = 0,
-  SOUTH = 1,
-  WEST = 2,
-  EAST = 3,
+    NORTH = 0,
+    SOUTH = 1,
+    EAST = 2,
+    WEST = 3
 };
 
 typedef struct s_player

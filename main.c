@@ -28,10 +28,8 @@ void	set_textures(t_game *game)
 void	set_data(t_game *game)
 {
     set_textures(game);
-	game->map = NULL;
-	ini_mapinfo(&game->mapinfo);
+    printf("game->mlx: %p\n", game->mlx);
 	game->texture_pixels = NULL;
-	game->textures = NULL;
 }
 
 void	init_game(t_game *game)

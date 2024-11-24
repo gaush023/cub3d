@@ -37,12 +37,55 @@ static bool is_all_one(char *line)
     return (true);
 }
 
+void print_map(t_game *game)
+{
+    int i;
+
+    i = 0;
+    while(i != game->mapinfo.height)
+    {
+        printf("game->map[%d] = %s$\n", i, game->map[i]);
+        i++;
+    }
+}
+
+static void save_mapinfo_width_height(t_game *game, size_t map_start_row)
+{
+    size_t row;
+    size_t column;
+    int i;
+
+    printf("save_mapinfo_width_height\n");
+    i = 0;
+    game->map = NULL;
+    row = map_start_row;
+    row++;
+    game->mapinfo.height = 0;
+    while(game->mapinfo.file[row] != NULL && is_all_space(game->mapinfo.file[row]) == false)
+        row++;
+    game->mapinfo.height = row - map_start_row;
+    column = 0;
+    while(game->mapinfo.file[map_start_row][column] != '\0')
+        column++;
+    game->mapinfo.width = column;
+    game->map = my_calloc(game->mapinfo.height, sizeof *game->map, game->node);
+    while(i != game->mapinfo.height)
+    {
+        game->map[i] = my_strdup(game->mapinfo.file[map_start_row], game->node);
+        map_start_row++;
+        i++;
+    }
+    print_map(game);
+    printf("game->mapinfo.width = %d\n", game->mapinfo.width);
+    printf("game->mapinfo.height = %d\n", game->mapinfo.height);
+}
+
 static void get_player_position(t_game *game)
 {
   size_t row;
   size_t column;
   size_t map_start_row;
-
+    
   row = 0;
   while(game->mapinfo.file[row] != NULL && is_all_one(game->mapinfo.file[row]) == false)
     row++;
@@ -60,6 +103,7 @@ static void get_player_position(t_game *game)
         game->player.pos_x = (double)column + 0.5;
         game->player.pos_y = (double)(row - map_start_row) + 0.5;
         game->player.direction = game->mapinfo.file[row][column];
+        save_mapinfo_width_height(game, map_start_row);
         return ;
       }
       column++;
@@ -75,11 +119,14 @@ void read_file(char *file_path, t_game *game)
 {
     ini_player(&game->player);
     ini_texture(&game->texinfo);
+    ini_mapinfo(&game->mapinfo); 
     check_file_extension(file_path, game);
     read_map_info(file_path, game);
     check_file_data(game);
     get_celling_floor_color(game);
     get_player_position(game);
+    printf("game->mapinfo.width = %d\n", game->mapinfo.width);
+    printf("game->mapinfo.height = %d\n", game->mapinfo.height);
     printf("game->player.pos_x = %f\n", game->player.pos_x); 
     printf("game->player.pos_y = %f\n", game->player.pos_y);
 }
