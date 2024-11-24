@@ -19,6 +19,7 @@ void set_image_pixel(t_img *image, int x, int y, int color)
 
     pixel = y * (image->size_line / 4) + x;
     image->addr[pixel] = color;
+    printf("image->size_line = %d\n", image->size_line);
     printf("pixel = %d\n", pixel);
     printf("color = %d\n", color);
     printf("image->addr[pixel] = %d\n", image->addr[pixel]);
@@ -63,11 +64,6 @@ void    render_frame(t_game *game)
         }
         y++;
     }
-    printf("y = %d\n", y);
-    printf("x = %d\n", x);
-    printf("game->mlx: %p\n", game->mlx);
-    printf("game->win: %p\n", game->win);
-    printf("image.img: %p\n", image.img);
     mlx_put_image_to_window(game->mlx, game->win, image.img, 0, 0);
     mlx_destroy_image(game->mlx, image.img);
     

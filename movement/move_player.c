@@ -43,7 +43,9 @@ static int move_right(t_game *game)
 int move_player(t_game *game)
 {
     int moved;
-
+    
+    printf("move_player\n");
+    exit(0);    
     moved = 0;
     if(game->player.move_y == 1)
         moved += move_forward(game);
