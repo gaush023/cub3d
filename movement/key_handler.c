@@ -42,7 +42,6 @@ int key_release_handler(int keycode, t_game *game)
 void listen_for_key(t_game *game)
 {
     init_player_direction(game);
-    printf("game->win: %p\n", game->win);
     mlx_hook(game->win, ClientMessage, NoEventMask, close_game, game);
     mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
     mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);   

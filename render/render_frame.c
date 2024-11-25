@@ -8,7 +8,6 @@ void init_img(t_game *game, t_img *image, int width, int height)
     image->img = mlx_new_image(game->mlx, width, height);
     if (!image->img)
         goodbye(game, ERROR, "Error creating image\n");
-    printf("pixel_bits: %d\n", image->pixel_bits);
     image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
 
 }
