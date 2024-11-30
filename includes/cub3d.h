@@ -17,6 +17,8 @@
 # include "struct.h"
 # include "define.h"
 
+extern int x; 
+
 // helper functions
 int		print_error(char *error);
 void	goodbye(t_game *game, int code, char *msg);

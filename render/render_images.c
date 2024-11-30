@@ -30,11 +30,10 @@ void render_images(t_game *game)
 
 int cub3d_render(t_game *game)
 {
-    int tmp_times;
-
-    tmp_times = game->player.has_moved;
+    printf("cub3d_render\n");
     game->player.has_moved += move_player(game);
-    if (game->player.has_moved != tmp_times)
-        render_images(game);
+    if (game->player.has_moved == 0)
+        return (0);  
+    render_images(game);
     return (0);
 }
