@@ -23,7 +23,8 @@ void	*my_malloc(size_t size, t_node *node)
 	ptr = malloc(size);
 	if (ptr == NULL)
 		return (NULL);
-	new_node = malloc(sizeof(t_node));
+    return (ptr);
+    new_node = malloc(sizeof(t_node));
 	new_node->ptr = ptr;
 	new_node->is_free = false;
 	new_node->next = NULL;

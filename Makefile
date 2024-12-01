@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(MALLOC_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC) $(MLXFLAGS)
+	$(CC) $(CFLAGS) -g -o $(NAME) $(OBJS) $(MALLOC_DIR)/$(MALLOC) $(MLXFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
