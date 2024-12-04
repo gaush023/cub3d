@@ -14,8 +14,9 @@
 # define LIBRARY_H
 
 # include "../helpers/malloc_lib/malloc_lib.h"
-//# include "mlx.h"
-# include "../minilibx-linux/mlx.h"
+# include "mlx.h"
+
+//# include "../minilibx-linux/mlx.h"
 # include <limits.h>
 # include <fcntl.h>
 # include <math.h>
@@ -23,7 +24,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
 
 #endif

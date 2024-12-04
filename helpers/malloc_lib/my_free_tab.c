@@ -5,14 +5,15 @@ void	my_free_tab(void **tab, t_node *node)
 	size_t	i;
 
 	i = 0;
+  (void)node;
 	while (tab[i])
 	{
-		my_free(tab[i], node);
+		free(tab[i]);
 		i++;
 	}
 	if (tab)
 	{
-		my_free(tab, node);
+		free(tab);
 		tab = NULL;
 	}
 }
