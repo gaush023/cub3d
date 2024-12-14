@@ -24,17 +24,26 @@ static bool	is_valid_pos(t_game *game, double x, double y)
 int	validate_move(t_game *game, double new_x, double new_y)
 {
 	int	moved;
+    int tmp_val;
 
 	moved = 0;
 	if (is_valid_pos(game, new_x, game->player.pos_y))
 	{
+        tmp_val = game->player.pos_x; 
 		game->player.pos_x = new_x;
-		moved = 1;
-	}
+	    if (game->map[(int)game->player.pos_y][(int)game->player.pos_x] == '1')
+            game->player.pos_x = tmp_val + 0.5;
+        else
+            moved = 1;
+	}   
 	if (is_valid_pos(game, game->player.pos_x, new_y))
 	{
+        tmp_val = game->player.pos_y;
 		game->player.pos_y = new_y;
-		moved = 1;
+        if (game->map[(int)game->player.pos_y][(int)game->player.pos_x] == '1')
+            game->player.pos_y = tmp_val + 0.5;
+        else
+		    moved = 1;
 	}
 	return (moved);
 }
