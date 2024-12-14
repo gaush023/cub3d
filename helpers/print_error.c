@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 01:34:31 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/11 01:34:52 by shuga            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-int print_error(char *error)
+int	print_error(char *error)
 {
-    write(1, "Error: ", 7);
-    write(1, error, ft_strlen(error));
-    return (ERROR);
+	write(1, "Error: ", 7);
+	write(1, error, ft_strlen(error));
+	return (ERROR);
 }
-

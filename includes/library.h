@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   library.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 01:14:30 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:35:38 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBRARY_H
 # define LIBRARY_H
 
-# include "../helpers/malloc_lib/malloc_lib.h"
 # include "mlx.h"
 
 //# include "../minilibx-linux/mlx.h"

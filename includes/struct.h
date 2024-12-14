@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 01:40:26 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:36:01 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct s_img
 
 typedef struct s_game
 {
-  t_node *node;
   void *mlx;
   void *win;
   int window_width;

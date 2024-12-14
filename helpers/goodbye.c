@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   goodbye.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 01:34:12 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/11 01:38:50 by shuga            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void goodbye(t_game *game, int code, char *msg)
@@ -9,7 +21,6 @@ void goodbye(t_game *game, int code, char *msg)
   if (game)
       exit(code);
   if(game->mlx)
-      my_free(game->mlx, game->node);
-  malloc_end(game->node);
+      free(game->mlx);
   exit(code);
 }

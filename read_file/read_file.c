@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 01:30:25 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/11 01:53:48 by shuga            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "../includes/cub3d.h"
 
 static bool is_all_space(char *line)
@@ -61,10 +74,10 @@ static void save_mapinfo_width_height(t_game *game, size_t map_start_row)
     while(game->mapinfo.file[map_start_row][column] != '\0')
         column++;
     game->mapinfo.width = column;
-    game->map = my_calloc(game->mapinfo.height, sizeof *game->map, game->node);
+    game->map = calloc(game->mapinfo.height, sizeof *game->map);
     while(i != game->mapinfo.height)
     {
-        game->map[i] = my_strdup(game->mapinfo.file[map_start_row], game->node);
+        game->map[i] = ft_strdup(game->mapinfo.file[map_start_row]);
         map_start_row++;
         i++;
     }

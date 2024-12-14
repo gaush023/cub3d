@@ -1,30 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_player.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 01:32:29 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/11 01:32:39 by shuga            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
- int x = 0;
-
-static int rotate_player_direction(t_game *game, double rot_speed)
+static int	rotate_player_direction(t_game *game, double rot_speed)
 {
-    t_player *p;
-    double tmp_dir_x;
+	t_player	*p;
+	double		tmp_dir_x;
 
-    p = &game->player; 
-    tmp_dir_x = p->direction_x;
-    p->direction_x = p->direction_x * cos(rot_speed) - p->direction_y * sin(rot_speed);
-    p->direction_y = tmp_dir_x * sin(rot_speed) + p->direction_y * cos(rot_speed);
-    tmp_dir_x = p->plane_x;
-    p->plane_x = p->plane_x * cos(rot_speed) - p->plane_y * sin(rot_speed);
-    p->plane_y = tmp_dir_x * sin(rot_speed) + p->plane_y * cos(rot_speed);
-    return (1);
+	p = &game->player;
+	tmp_dir_x = p->direction_x;
+	p->direction_x = p->direction_x * cos(rot_speed) - p->direction_y
+		* sin(rot_speed);
+	p->direction_y = tmp_dir_x * sin(rot_speed) + p->direction_y
+		* cos(rot_speed);
+	tmp_dir_x = p->plane_x;
+	p->plane_x = p->plane_x * cos(rot_speed) - p->plane_y * sin(rot_speed);
+	p->plane_y = tmp_dir_x * sin(rot_speed) + p->plane_y * cos(rot_speed);
+	return (1);
 }
 
-
-int rotate_player(t_game *game, double rotate_direction)
+int	rotate_player(t_game *game, double rotate_direction)
 {
-    int moved;
-    double rot_speed;
-    
-    moved = 0;
-    rot_speed = ROTSPEED * rotate_direction;
-    moved += rotate_player_direction(game, rot_speed);
-    return (moved);
+	int		moved;
+	double	rot_speed;
+
+	moved = 0;
+	rot_speed = ROTSPEED * rotate_direction;
+	moved += rotate_player_direction(game, rot_speed);
+	return (moved);
 }

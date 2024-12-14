@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_startup.c                                   :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 19:48:27 by etakaham          #+#    #+#             */
-/*   Updated: 2024/06/07 16:00:05 by etakaham         ###   ########.fr       */
+/*   Created: 2024/12/11 01:47:46 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/11 01:48:02 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc_lib.h"
+#include "../includes/cub3d.h"
 
-int	malloc_startup(t_node *head)
+void    free_tab(void **tab)
 {
-	head->ptr = NULL;
-	head->is_free = true;
-	head->next = NULL;
-	head->size = 0;
-	return (0);
+    size_t i;
+
+    i = 0;
+    while(tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
 }
