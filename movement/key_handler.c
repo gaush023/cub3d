@@ -12,22 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-#define XK_Escape 53 // Escape key
-#define XK_Left 123  // Left arrow key
-#define XK_Right 124 // Right arrow key
-#define XK_w 13      // 'w' key
-#define XK_a 0       // 'a' key
-#define XK_s 1       // 's' key
-#define XK_d 2       // 'd' key
-
-// X11 event masks
-#define KeyPress 2
-#define KeyRelease 3
-#define ClientMessage 33
-#define NoEventMask 0L
-#define KeyPressMask (1L << 0)
-#define KeyReleaseMask (1L << 1)
-
 int	key_press_handler(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
@@ -73,3 +57,4 @@ void	listen_for_key(t_game *game)
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }
+
