@@ -105,6 +105,7 @@ static void get_player_position(t_game *game)
         game->player.pos_x = (double)column + 0.5;
         game->player.pos_y = (double)(row - map_start_row) + 0.5;
         game->player.direction = game->mapinfo.file[row][column];
+        game->mapinfo.file[row][column] = '0';
         save_mapinfo_width_height(game, map_start_row);
         return ;
       }

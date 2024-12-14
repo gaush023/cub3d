@@ -22,10 +22,8 @@ int	close_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-		//mlx_destroy_display(game->mlx);
-		// mlx_loop_end(game->mlx);
-		free(game->mlx);
+	    mlx_destroy_display(game->mlx);
+		mlx_loop_end(game->mlx);
 	}
-	free(game);
 	exit(0);
 }

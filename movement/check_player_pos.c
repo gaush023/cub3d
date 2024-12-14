@@ -18,8 +18,6 @@ static bool	is_valid_pos(t_game *game, double x, double y)
 		return (false);
 	if (y < 0.25 || y >= game->mapinfo.height - 0.25)
 		return (false);
-	if (game->mapinfo.file[(int)y][(int)x] == '1')
-		return (false);
 	return (true);
 }
 

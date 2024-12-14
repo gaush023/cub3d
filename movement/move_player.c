@@ -37,11 +37,6 @@ static int move_left(t_game *game)
     double new_x;
     double new_y;
 
-    printf("move left\n");
-    printf("pos_x: %f\n", game->player.pos_x);
-    printf("pos_y: %f\n", game->player.pos_y);
-    printf("direction_x: %f\n", game->player.direction_x);
-    printf("direction_y: %f\n", game->player.direction_y);
     new_x = game->player.pos_x + game->player.direction_y * MOVESPEED;
     new_y = game->player.pos_y - game->player.direction_x * MOVESPEED;
     return (validate_move(game, new_x, new_y));
