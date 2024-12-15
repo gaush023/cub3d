@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:30:25 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 19:45:25 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:55:09 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,24 @@ static bool	is_all_space(char *line)
 	return (true);
 }
 
-static bool is_all_one(char *line)
+static bool	is_all_one(char *line)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while(line[i] != '\0')
-    {
-        if(line[i] != '1' && !is_space(line[i]))
-           return (false);
-        i++;
-    }
-    if(is_all_space(line))
-        return (false);
-    return (true);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != '1' && !is_space(line[i]))
+			return (false);
+		i++;
+	}
+	if (is_all_space(line))
+		return (false);
+	return (true);
 }
 
-
-static void	get_player_position_helper(t_game *game, size_t row,
-    size_t column, size_t map_start_row)
+static void	get_player_position_helper(t_game *game, size_t row, size_t column,
+		size_t map_start_row)
 {
 	game->player.pos_x = (double)column + 0.5;
 	game->player.pos_y = (double)(row - map_start_row) + 0.5;

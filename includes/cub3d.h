@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/12/15 20:28:21 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:56:31 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	set_dda(t_ray *ray, t_player *player);
 //lib functions
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-char    *ft_strdub(char *str);
-char    *ft_strndup(const char *s, size_t n);
+char	*ft_strdub(char *str);
+char	*ft_strndup(const char *s, size_t n);
 char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
 int		ft_atoi(char *str);
