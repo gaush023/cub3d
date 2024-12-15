@@ -41,6 +41,8 @@ void	set_dda(t_ray *ray, t_player *player);
 //lib functions
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
+char    *ft_strdub(char *str);
+char    *ft_strndup(const char *s, size_t n);
 char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
 int		ft_atoi(char *str);
@@ -58,6 +60,7 @@ void	check_file_data(t_game *game);
 void	get_celling_floor_color(t_game *game);
 bool	is_four_xpmlines(t_game *game);
 void	save_mapinfo_width_height(t_game *game, size_t map_start_row);
+void	get_player_position(t_game *game);
 
 //move functions
 void	listen_for_key(t_game *game);

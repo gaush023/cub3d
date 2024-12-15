@@ -26,7 +26,25 @@ static bool	is_all_space(char *line)
 	return (true);
 }
 
-static void	get_player_position_helper(t_game *game)
+static bool is_all_one(char *line)
+{
+    size_t i;
+
+    i = 0;
+    while(line[i] != '\0')
+    {
+        if(line[i] != '1' && !is_space(line[i]))
+           return (false);
+        i++;
+    }
+    if(is_all_space(line))
+        return (false);
+    return (true);
+}
+
+
+static void	get_player_position_helper(t_game *game, size_t row,
+    size_t column, size_t map_start_row)
 {
 	game->player.pos_x = (double)column + 0.5;
 	game->player.pos_y = (double)(row - map_start_row) + 0.5;

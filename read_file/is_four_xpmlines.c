@@ -28,7 +28,7 @@ char	*re_xpmpath(char *path)
 	tmp_pos = i;
 	while (path[i] != '\n')
 		i++;
-	tmp = calloc(1, sizeof *(tmp * (i - tmp_pos + 1)));
+	tmp = calloc(1, sizeof * tmp * (i - tmp_pos + 1));
 	while (tmp_pos < i)
 	{
 		tmp[j] = path[tmp_pos];

@@ -31,8 +31,8 @@ int	*xpm_to_img(t_game *game, char *path)
 	int		y;
 
 	ini_texture_img(game, &tmp, path);
-	buffer = calloc(1, sizeof *(buffer * game->texinfo.size
-				* game->texinfo.size));
+	buffer = calloc(1, sizeof * buffer * game->texinfo.size
+				* game->texinfo.size);
 	if (!buffer)
 		goodbye(game, ERROR, "Error allocating memory\n");
 	y = 0;
