@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:29:01 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:41:20 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:21:34 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	init_texture_pixel(t_game *game)
 	int	i;
 
 	if (game->texture_pixels)
-	    free_tab((void **)game->texture_pixels);
+		free_tab((void **)game->texture_pixels);
 	game->texture_pixels = calloc(game->window_width + 1,
-			sizeof *game->texture_pixels);
+			sizeof *(game->texture_pixels));
 	if (!game->texture_pixels)
 		goodbye(game, ERROR, "Malloc failed\n");
 	i = 0;
 	while (i < game->window_width)
 	{
 		game->texture_pixels[i] = calloc(game->window_width + 1,
-				sizeof *game->texture_pixels);
+				sizeof *(game->texture_pixels));
 		if (!game->texture_pixels[i])
 			goodbye(game, ERROR, "Malloc failed\n");
 		i++;

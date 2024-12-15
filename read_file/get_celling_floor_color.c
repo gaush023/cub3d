@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:29:40 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:41:30 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 19:48:48 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static void	copy_rgb_color_helper(size_t row, size_t column, t_game *game,
 	if (type == CEILING)
 	{
 		game->texinfo.ceiling = (int *)calloc(1,
-				sizeof *game->texinfo.ceiling);
+				sizeof *(game->texinfo.ceiling));
 		if (!game->texinfo.ceiling)
 			goodbye(game, ERROR, "Error allocating memory\n");
 		tmp = game->texinfo.ceiling;
 	}
 	else
 	{
-		game->texinfo.floor = (int *)calloc(1, sizeof *game->texinfo.floor);
+		game->texinfo.floor = (int *)calloc(1, sizeof * (game->texinfo.floor));
 		if (!game->texinfo.floor)
 			goodbye(game, ERROR, "Error allocating memory\n");
 		tmp = game->texinfo.floor;

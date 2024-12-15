@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:02 by sagemura          #+#    #+#             */
-/*   Updated: 2024/12/11 01:39:20 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:09:35 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	*xpm_to_img(t_game *game, char *path)
 	int		y;
 
 	ini_texture_img(game, &tmp, path);
-	buffer = calloc(1, sizeof *buffer * game->texinfo.size
-			* game->texinfo.size);
+	buffer = calloc(1, sizeof *(buffer * game->texinfo.size
+				* game->texinfo.size));
 	if (!buffer)
 		goodbye(game, ERROR, "Error allocating memory\n");
 	y = 0;

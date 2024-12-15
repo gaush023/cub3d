@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/08/31 01:13:29 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:28:29 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
-#define DEFINE_H
+# define DEFINE_H
 
 # define SUCCESS 0
 # define ERROR 1
@@ -26,6 +26,5 @@
 # define FLOOR 1
 # define MOVESPEED 0.0125
 # define ROTSPEED 0.015
-
 
 #endif

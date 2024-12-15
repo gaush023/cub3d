@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:31:27 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:31:33 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:04:00 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,3 @@ void	listen_for_key(t_game *game)
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }
-

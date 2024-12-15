@@ -6,29 +6,11 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:30:10 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:59:24 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 19:31:29 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-char	*ft_strndup(char *s1, size_t n)
-{
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (n + 1));
-	if (!str)
-		return (NULL);
-	while (s1[i] != '\0' && i < n)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
 
 static char	*extract_next_line(char *str)
 {

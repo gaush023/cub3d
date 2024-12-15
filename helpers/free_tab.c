@@ -6,21 +6,21 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:47:46 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:48:02 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 20:08:48 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    free_tab(void **tab)
+void	free_tab(void **tab)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while(tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

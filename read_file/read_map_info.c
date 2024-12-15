@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:30:39 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:56:57 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/15 19:45:45 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	get_line_counts(char *file_path, t_game *game)
 		while (line != NULL)
 		{
 			row++;
-            free(line);
+			free(line);
 			line = get_next_line(fd);
 		}
 	}
@@ -36,14 +36,11 @@ static size_t	get_line_counts(char *file_path, t_game *game)
 	return (row);
 }
 
-
-
 void	copy_file_data(t_game *game, size_t column, size_t row, size_t i)
 {
 	char	*line;
 
 	line = get_next_line(game->mapinfo.fd);
-
 	while (line != NULL)
 	{
 		game->mapinfo.file[row] = calloc(ft_strlen(line) + 1, sizeof(char));
