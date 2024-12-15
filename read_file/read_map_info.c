@@ -43,6 +43,7 @@ void	copy_file_data(t_game *game, size_t column, size_t row, size_t i)
 	char	*line;
 
 	line = get_next_line(game->mapinfo.fd);
+
 	while (line != NULL)
 	{
 		game->mapinfo.file[row] = calloc(ft_strlen(line) + 1, sizeof(char));
