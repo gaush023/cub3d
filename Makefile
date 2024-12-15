@@ -21,8 +21,8 @@ SRCS = main.c \
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS =  -L./minilibx-linux -lmlx -lXext -lX11 -lm 
-MALLOC_DIR = ./helpers/malloc_lib
+# MLXFLAGS =  -L./minilibx-linux -lmlx -lXext -lX11 -lm 
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 OBJS = $(SRCS:.c=.o)
 
