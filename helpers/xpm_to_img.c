@@ -18,7 +18,7 @@ static void	ini_texture_img(t_game *game, t_img *image, char *path)
 	image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size,
 			&game->texinfo.size);
 	if (!image->img)
-		goodbye(game, ERROR, "Error loading texture\n");
+		goodbye(game, ERROR, "loading texture\n");
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 }
@@ -34,7 +34,7 @@ int	*xpm_to_img(t_game *game, char *path)
 	buffer = calloc(1, sizeof * (buffer) * game->texinfo.size
 			* game->texinfo.size);
 	if (!buffer)
-		goodbye(game, ERROR, "Error allocating memory\n");
+		goodbye(game, ERROR, "allocating memory\n");
 	y = 0;
 	while (y < game->texinfo.size)
 	{

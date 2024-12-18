@@ -55,11 +55,12 @@ void	perform_dda(t_game *game, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = SIDE_Y;
 		}
-		if (ray->map_y < 0.25 || ray->map_x < 0.25
-			|| ray->map_y > game->mapinfo.height - 0.25
-			|| ray->map_x > game->mapinfo.width - 1.25)
+		if (ray->map_y < 0 || ray->map_x < 0
+			|| ray->map_y > game->mapinfo.height 
+			|| ray->map_x > game->mapinfo.width )
 			break ;
 		else if (game->map[ray->map_y][ray->map_x] > '0')
 			hit = true;
 	}
 }
+

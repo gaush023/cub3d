@@ -45,7 +45,8 @@ void	init_game(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
-
+    
+    gettimeofday(&game.last_time, NULL);
 	if (ac != 2)
 		return (print_error("Invalid number of arguments\n"));
 	read_file(av[1], &game);

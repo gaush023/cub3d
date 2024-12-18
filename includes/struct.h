@@ -109,6 +109,7 @@ typedef struct s_game
 	char			**map;
 	int				**texture_pixels;
 	int				**textures;
+    struct timeval  last_time;
 }					t_game;
 
 #endif

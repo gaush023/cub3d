@@ -15,17 +15,17 @@
 static size_t	coutout_line(int *tmp, size_t row, size_t column, t_game *game)
 {
 	int	start_pos;
-
+   
 	start_pos = column;
 	while (game->mapinfo.file[row][column] != ',')
 	{
 		if (!ft_isdigit(game->mapinfo.file[row][column])
 			&& !is_space(game->mapinfo.file[row][column]))
-			goodbye(game, ERROR, "rgb color format is invalid aa\n");
+			goodbye(game, ERROR, "rgb color format is invalid\n");
 		column++;
 	}
-	*tmp = ft_atoi(&game->mapinfo.file[row][start_pos]);
-	if (*tmp < 0 || *tmp > 255)
+    *tmp = ft_atoi(&game->mapinfo.file[row][start_pos]);
+    if (*tmp < 0 || *tmp > 255)
 		goodbye(game, ERROR, "rgb color format is invalid bb\n");
 	return (column);
 }
@@ -54,7 +54,7 @@ static void	copy_rgb_color_helper(size_t row, size_t column, t_game *game,
 	column = coutout_line(&tmp[1], row, column + 1, game);
 	tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1]);
 	if (tmp[2] < 0 || tmp[2] > 255)
-		goodbye(game, ERROR, "rgb color format is invalid cc\n");
+		goodbye(game, ERROR, "rgb color format is invalid\n");
 }
 
 static void	copy_rgb_color(size_t row, size_t column, t_game *game, int type)

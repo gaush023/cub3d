@@ -48,13 +48,15 @@ void	set_frame_pixel(t_game *game, t_img *image, int x, int y)
 	}
 }
 
+
+
 void	render_frame(t_game *game)
 {
 	t_img	image;
 	int		x;
 	int		y;
-
-	image.img = NULL;
+    
+    image.img = NULL;
 	init_img(game, &image, game->window_width, game->window_height);
 	y = 0;
 	while (y < game->window_height)
