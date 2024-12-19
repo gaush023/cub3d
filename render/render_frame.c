@@ -9,7 +9,6 @@
 /*   Updated: 2024/12/11 01:28:51 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/cub3d.h"
 
 void	init_img(t_game *game, t_img *image, int width, int height)
@@ -32,22 +31,26 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 	image->addr[pixel] = color;
 }
 
-void	set_frame_pixel(t_game *game, t_img *image, int x, int y)
+void set_frame_pixel(t_game *game, t_img *image, int x, int y)
 {
-	if (game->texture_pixels[y][x] > 0)
-	{
-		set_image_pixel(image, x, y, game->texture_pixels[y][x]);
-	}
-	else if (y < game->window_height / 2)
-	{
-		set_image_pixel(image, x, y, game->texinfo.hex_ceiling);
-	}
-	else if (y < game->window_height - 1)
-	{
-		set_image_pixel(image, x, y, game->texinfo.hex_floor);
-	}
-}
+    double fog_factor;
+    int color;
 
+    if (game->texture_pixels[y][x] > 0)
+        set_image_pixel(image, x, y, game->texture_pixels[y][x]);
+    else if (y < game->window_height / 2)
+    {
+        fog_factor = (double)(game->window_height / 2 - y) / (game->window_height / 2);
+        color = mix_color(game->texinfo.hex_ceiling, FOG_COLOR, fog_factor);
+        set_image_pixel(image, x, y, color);
+    }
+    else
+    {
+        fog_factor = (double)(y - game->window_height / 2) / (game->window_height / 2);
+        color = mix_color(game->texinfo.hex_floor, FOG_COLOR, fog_factor);
+        set_image_pixel(image, x, y, game->texinfo.hex_floor);
+    }
+}
 
 
 void	render_frame(t_game *game)

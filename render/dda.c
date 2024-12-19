@@ -61,6 +61,7 @@ void	perform_dda(t_game *game, t_ray *ray)
 			break ;
 		else if (game->map[ray->map_y][ray->map_x] > '0')
 			hit = true;
-	}
+        
+    }
 }
 

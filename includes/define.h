@@ -24,7 +24,9 @@
 # define BUFFER_SIZE 4096
 # define CEILING 0
 # define FLOOR 1
-# define MOVESPEED 0.0125
+# define MOVESPEED 0.0100
 # define ROTSPEED 0.015
+#define MAX_DISTANCE 5.0
+#define FOG_COLOR 0x333333 
 
 #endif

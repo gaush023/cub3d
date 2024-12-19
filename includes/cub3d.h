@@ -33,6 +33,8 @@ void	free_tab(void **tab);
 //render functions
 void	render_images(t_game *game);
 void	render_frame(t_game *game);
+int mix_color(int base_color, int fog_color, double factor);
+double calc_fog_factor(double distance, double max_distance);
 int		raycasting(t_player *player, t_game *game);
 int		cub3d_render(t_game *game);
 void	perform_dda(t_game *game, t_ray *ray);

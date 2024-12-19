@@ -60,29 +60,8 @@ void	get_texture_index(t_game *game, t_ray *ray)
 			game->texinfo.index = SOUTH;
 		else
 			game->texinfo.index = NORTH;
-	}
-}
 
-#define MAX_DISTANCE 8.0
-#define FOG_COLOR 0x333333 
-
-int mix_color(int base_color, int fog_color, double factor)
-{
-    if(factor > 1.0)
-        factor = 1.0;
-    if(factor < 0.0)
-        factor = 0.0;
-   
-    int r = ((base_color >> 16) & 0xFF) * (1.0 - factor) + ((fog_color >> 16) & 0xFF) * factor;
-    int g = ((base_color >> 8) & 0xFF) * (1.0 - factor) + ((fog_color >> 8) & 0xFF) * factor;
-    int b = (base_color & 0xFF) * (1.0 - factor) + (fog_color & 0xFF) * factor;
-
-    return ((r << 16) | (g << 8) | b);
-}
-
-double calc_fog_factor(double distance, double max_distance)
-{
-    return distance/ max_distance;
+    }
 }
 
 
@@ -111,10 +90,12 @@ void	update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
 			color = (color >> 1) & GREY;
         fog_factor = calc_fog_factor(ray->wall_dist, MAX_DISTANCE);
         color = mix_color(color, FOG_COLOR, fog_factor);
-        if(color > 0)
-            game->texture_pixels[y][x] = color;
-		y++;
+        game->texture_pixels[y][x] = color;
+        if (ray->wall_dist > MAX_DISTANCE)
+            game->texture_pixels[y][x]= FOG_COLOR;
+        y++;
 	}
+   
 }
 
 int	raycasting(t_player *player, t_game *game)
@@ -129,21 +110,9 @@ int	raycasting(t_player *player, t_game *game)
 		init_raycasting_info(x, &ray, player, game);
 		set_dda(&ray, player);
 		perform_dda(game, &ray);
-		 if (ray.wall_dist > 10)
-        {
-            int y = 0;
-            while (y < game->window_height)
-            {
-                game->texture_pixels[y][x] = 0x000000; // 真っ暗に描画
-                y++;
-            }
-            x++;
-            continue;
-        }
-
         caluc_line_height(&ray, player, game);
 		update_texture_pixel(game, &game->texinfo, &ray, x);
 		x++;
-	}
-	return (SUCCESS);
+    }
+    return (SUCCESS);
 }
