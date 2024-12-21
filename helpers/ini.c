@@ -14,6 +14,10 @@
 
 void	ini_texture(t_texinfo *textures)
 {
+    textures->north = NULL;
+    textures->south = NULL;
+    textures->west = NULL;
+    textures->east = NULL;
 	textures->floor = 0;
 	textures->ceiling = 0;
 	textures->hex_floor = 0x0;

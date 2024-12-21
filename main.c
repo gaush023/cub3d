@@ -17,10 +17,10 @@ void	set_textures(t_game *game)
 	game->textures = calloc(5, sizeof * game->textures);
 	if (!game->textures)
 		goodbye(game, ERROR, "Error allocating memory\n");
-	game->textures[NORTH] = xpm_to_img(game, game->texinfo.north);
+    game->textures[NORTH] = xpm_to_img(game, game->texinfo.north);
 	game->textures[SOUTH] = xpm_to_img(game, game->texinfo.south);
 	game->textures[WEST] = xpm_to_img(game, game->texinfo.west);
-	game->textures[EAST] = xpm_to_img(game, game->texinfo.east);
+    game->textures[EAST] = xpm_to_img(game, game->texinfo.east);
 }
 
 void	set_data(t_game *game)

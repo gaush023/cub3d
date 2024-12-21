@@ -41,17 +41,13 @@ char	*re_xpmpath(char *path)
 
 void	which_direction_and_copy(t_game *game, size_t row, size_t column)
 {
-	if (game->mapinfo.file[row][column] == 'N' && game->mapinfo.file[row][column
-		+ 1] == 'O')
+	if (game->mapinfo.file[row][column] == 'N')
 		game->texinfo.north = re_xpmpath(&game->mapinfo.file[row][column]);
-	else if (game->mapinfo.file[row][column] == 'S'
-			&& game->mapinfo.file[row][column + 1] == 'O')
+	else if (game->mapinfo.file[row][column] == 'S')
 		game->texinfo.south = re_xpmpath(&game->mapinfo.file[row][column]);
-	else if (game->mapinfo.file[row][column] == 'W'
-			&& game->mapinfo.file[row][column + 1] == 'E')
+	else if (game->mapinfo.file[row][column] == 'W')
 		game->texinfo.west = re_xpmpath(&game->mapinfo.file[row][column]);
-	else if (game->mapinfo.file[row][column] == 'E'
-			&& game->mapinfo.file[row][column + 1] == 'A')
+	else if (game->mapinfo.file[row][column] == 'E')
 		game->texinfo.east = re_xpmpath(&game->mapinfo.file[row][column]);
 	else
 		goodbye(game, ERROR, "Invalid map\nxpm file is invalid direction\n");
@@ -90,15 +86,17 @@ static bool	is_four_xpmlines_helper(t_game *game, size_t row, size_t column)
 		if (game->mapinfo.file[row][column] == 'N'
 			|| game->mapinfo.file[row][column] == 'S'
 			|| game->mapinfo.file[row][column] == 'W'
-			|| (game->mapinfo.file[row][column] == 'E'
-				&& game->mapinfo.file[row][column + 1] == 'A'))
-			copy_xpm_path(game, row, column);
-		if (game->texinfo.north != NULL && game->texinfo.south != NULL
-			&& game->texinfo.west != NULL && game->texinfo.east != NULL)
-			return (SUCCESS);
-		column++;
+			|| (game->mapinfo.file[row][column] == 'E'))
+	    {
+            copy_xpm_path(game, row, column);
+            break;
+        }
+        column++;
 	}
-	return (!SUCCESS);
+    if (game->texinfo.north != NULL && game->texinfo.south != NULL
+        && game->texinfo.west != NULL && game->texinfo.east != NULL)
+        return (SUCCESS);
+    return (ERROR);
 }
 
 bool	is_four_xpmlines(t_game *game)

@@ -24,7 +24,7 @@ static size_t	coutout_line(int *tmp, size_t row, size_t column, t_game *game)
 			goodbye(game, ERROR, "rgb color format is invalid\n");
 		column++;
 	}
-    *tmp = ft_atoi(&game->mapinfo.file[row][start_pos]);
+    *tmp = ft_atoi(&game->mapinfo.file[row][start_pos], game);
     if (*tmp < 0 || *tmp > 255)
 		goodbye(game, ERROR, "rgb color format is invalid bb\n");
 	return (column);
@@ -41,7 +41,7 @@ static void	copy_rgb_color_helper(size_t row, size_t column, t_game *game,
 				sizeof *(game->texinfo.ceiling));
 		if (!game->texinfo.ceiling)
 			goodbye(game, ERROR, "Error allocating memory\n");
-		tmp = game->texinfo.ceiling;
+        tmp = game->texinfo.ceiling;
 	}
 	else
 	{
@@ -50,9 +50,9 @@ static void	copy_rgb_color_helper(size_t row, size_t column, t_game *game,
 			goodbye(game, ERROR, "Error allocating memory\n");
 		tmp = game->texinfo.floor;
 	}
-	column = coutout_line(&tmp[0], row, column, game);
+    column = coutout_line(&tmp[0], row, column, game);
 	column = coutout_line(&tmp[1], row, column + 1, game);
-	tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1]);
+	tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1], game);
 	if (tmp[2] < 0 || tmp[2] > 255)
 		goodbye(game, ERROR, "rgb color format is invalid\n");
 }

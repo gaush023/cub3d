@@ -27,22 +27,22 @@ void	init_raycasting_info(int x, t_ray *ray, t_player *player, t_game *game)
 
 static void	caluc_line_height(t_ray *ray, t_player *player, t_game *game)
 {
-	if (ray->side == 0)
-		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
-	else
-		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-	ray->line_height = (int)(game->window_height / ray->wall_dist);
-	ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + game->window_height / 2;
-	if (ray->draw_end >= game->window_height)
-		ray->draw_end = game->window_height - 1;
-	if (ray->side == SIDE_X)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
-	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+   if(ray->side == 0)
+        ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
+    else 
+        ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+    ray->line_height = (int)(game->window_height / ray->wall_dist);
+    ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
+    if(ray->draw_start < 0)
+        ray->draw_start = 0;
+    ray->draw_end = ray->line_height / 2 + game->window_height / 2;
+    if(ray->draw_end >= game->window_height)
+        ray->draw_end = game->window_height - 1;
+    if(ray->side == SIDE_X)
+        ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
+    else 
+        ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
+    ray->wall_x -= floor(ray->wall_x);
 }
 
 void	get_texture_index(t_game *game, t_ray *ray)
@@ -92,10 +92,14 @@ void	update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
         color = mix_color(color, FOG_COLOR, fog_factor);
         game->texture_pixels[y][x] = color;
         if (ray->wall_dist > MAX_DISTANCE)
-            game->texture_pixels[y][x]= FOG_COLOR;
+        {
+            if (ray->wall_dist > MAX_DISTANCE * 1.5)
+                game->texture_pixels[y][x] = 0;
+            else 
+                game->texture_pixels[y][x]= FOG_COLOR;
+        }
         y++;
 	}
-   
 }
 
 int	raycasting(t_player *player, t_game *game)

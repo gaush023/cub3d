@@ -44,12 +44,8 @@ void set_frame_pixel(t_game *game, t_img *image, int x, int y)
         color = mix_color(game->texinfo.hex_ceiling, FOG_COLOR, fog_factor);
         set_image_pixel(image, x, y, color);
     }
-    else
-    {
-        fog_factor = (double)(y - game->window_height / 2) / (game->window_height / 2);
-        color = mix_color(game->texinfo.hex_floor, FOG_COLOR, fog_factor);
+    else if (y < game->window_height - 1)
         set_image_pixel(image, x, y, game->texinfo.hex_floor);
-    }
 }
 
 
@@ -66,7 +62,7 @@ void	render_frame(t_game *game)
 	{
 		x = 0;
 		while (x < game->window_width)
-		{
+	    {
 			set_frame_pixel(game, &image, x, y);
 			x++;
 		}

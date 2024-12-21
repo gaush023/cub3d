@@ -17,7 +17,7 @@ static void	ini_texture_img(t_game *game, t_img *image, char *path)
 	set_img_zero(image);
 	image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size,
 			&game->texinfo.size);
-	if (!image->img)
+    if (!image->img)
 		goodbye(game, ERROR, "loading texture\n");
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);

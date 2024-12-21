@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/* ******************************************************534hjk */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_player_position.c                              :+:      :+:    :+:   */
@@ -48,19 +48,31 @@ static void	get_player_position_helper(t_game *game, size_t row, size_t column,
 	game->player.pos_x = (double)column + 0.5;
 	game->player.pos_y = (double)(row - map_start_row) + 0.5;
 	game->player.direction = game->mapinfo.file[row][column];
-	game->mapinfo.file[row][column] = '0';
+    game->mapinfo.file[row][column] = '0';
 	save_mapinfo_width_height(game, map_start_row);
 }
 
-static size_t	get_ini_maprow(t_game *game)
+static size_t	get_ini_maprow(t_game *game, size_t row)
 {
-	size_t	row;
-
-	row = 0;
-	while (game->mapinfo.file[row] != NULL
-		&& is_all_one(game->mapinfo.file[row]) == false)
-		row++;
-	return (row);
+    size_t column;
+    
+    column = 0;
+    while(!is_all_one(game->mapinfo.file[row]))
+        row++;
+    row++;
+    while(game->mapinfo.file[row] != NULL)
+    {
+        column = 0;
+        while(game->mapinfo.file[row][column] != '\0')
+        {
+            if(game->mapinfo.file[row][column] =='0')
+                return --row;
+            column++;
+        }  
+        row++;
+    }
+    goodbye(game, ERROR, "Invalid map\nmap is invalid\n");
+    return -1;
 }
 
 void	get_player_position(t_game *game)
@@ -69,8 +81,8 @@ void	get_player_position(t_game *game)
 	size_t	column;
 	size_t	map_start_row;
 
-	row = get_ini_maprow(game);
-	column = 0;
+	row = get_ini_maprow(game, 0);
+    column = 0;
 	map_start_row = row;
 	row++;
 	while (game->mapinfo.file[row] != NULL
@@ -89,4 +101,6 @@ void	get_player_position(t_game *game)
 		column = 0;
 		row++;
 	}
+    if (game->player.direction == '\0')
+        goodbye(game, ERROR, "Invalid map\nplayer position is invalid\nor not found\n");
 }

@@ -47,7 +47,7 @@ char	*ft_strdub(char *str);
 char	*ft_strndup(const char *s, size_t n);
 char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
-int		ft_atoi(char *str);
+int		ft_atoi(char *str, t_game *game);
 bool	ft_isalpha(int c);
 int		ft_isalnum(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
