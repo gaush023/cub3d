@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:17 by sagemura          #+#    #+#             */
-/*   Updated: 2024/12/15 20:56:31 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:23:08 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int		*xpm_to_img(t_game *game, char *path);
 bool	is_space(char c);
 int		close_game(t_game *game);
 void	free_tab(void **tab);
+bool	is_all_space(char *line);
 
 //render functions
-void	render_images(t_game *game);
+void render_images(t_game *game);
 void	render_frame(t_game *game);
-int mix_color(int base_color, int fog_color, double factor);
-double calc_fog_factor(double distance, double max_distance);
+int		mix_color(int base_color, int fog_color, double factor);
+double	calc_fog_factor(double distance, double max_distance);
 int		raycasting(t_player *player, t_game *game);
 int		cub3d_render(t_game *game);
 void	perform_dda(t_game *game, t_ray *ray);

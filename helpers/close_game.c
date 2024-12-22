@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:34:00 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 20:58:58 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:14:48 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	close_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-		 mlx_destroy_display(game->mlx);
-		 mlx_loop_end(game->mlx);
+		mlx_destroy_display(game->mlx);
+		mlx_loop_end(game->mlx);
 	}
 	exit(0);
 }

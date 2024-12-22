@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:28:02 by sagemura          #+#    #+#             */
-/*   Updated: 2024/12/15 20:08:57 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:17:08 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ini_texture(t_texinfo *textures)
 {
-    textures->north = NULL;
-    textures->south = NULL;
-    textures->west = NULL;
-    textures->east = NULL;
+	textures->north = NULL;
+	textures->south = NULL;
+	textures->west = NULL;
+	textures->east = NULL;
 	textures->floor = 0;
 	textures->ceiling = 0;
 	textures->hex_floor = 0x0;

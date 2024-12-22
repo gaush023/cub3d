@@ -1,30 +1,16 @@
-/* ******************************************************534hjk */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_player_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 01:30:25 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 20:55:09 by shuga            ###   ########.fr       */
+/*   Created: 2024/12/22 16:24:32 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/22 16:32:13 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static bool	is_all_space(char *line)
-{
-	size_t	i;
-
-	i = 0;
-	while (line[i] != '\n')
-	{
-		if (!is_space(line[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 static bool	is_all_one(char *line)
 {
@@ -48,59 +34,69 @@ static void	get_player_position_helper(t_game *game, size_t row, size_t column,
 	game->player.pos_x = (double)column + 0.5;
 	game->player.pos_y = (double)(row - map_start_row) + 0.5;
 	game->player.direction = game->mapinfo.file[row][column];
-    game->mapinfo.file[row][column] = '0';
+	game->mapinfo.file[row][column] = '0';
 	save_mapinfo_width_height(game, map_start_row);
 }
 
 static size_t	get_ini_maprow(t_game *game, size_t row)
 {
-    size_t column;
-    
-    column = 0;
-    while(!is_all_one(game->mapinfo.file[row]))
-        row++;
-    row++;
-    while(game->mapinfo.file[row] != NULL)
-    {
-        column = 0;
-        while(game->mapinfo.file[row][column] != '\0')
-        {
-            if(game->mapinfo.file[row][column] =='0')
-                return --row;
-            column++;
-        }  
-        row++;
-    }
-    goodbye(game, ERROR, "Invalid map\nmap is invalid\n");
-    return -1;
+	size_t	column;
+
+	column = 0;
+	while (!is_all_one(game->mapinfo.file[row]))
+		row++;
+	row++;
+	while (game->mapinfo.file[row] != NULL)
+	{
+		column = 0;
+		while (game->mapinfo.file[row][column] != '\0')
+		{
+			if (game->mapinfo.file[row][column] == '0')
+				return (--row);
+			column++;
+		}
+		row++;
+	}
+	goodbye(game, ERROR, "Invalid map\nmap is invalid\n");
+	return (-1);
+}
+
+bool	gp_helper(t_game *game, size_t row, size_t map_start_row)
+{
+	size_t	column;
+
+	column = 0;
+	while (game->mapinfo.file[row][column] != '\0')
+	{
+		if (game->mapinfo.file[row][column] == 'N'
+			|| game->mapinfo.file[row][column] == 'S'
+			|| game->mapinfo.file[row][column] == 'W'
+			|| game->mapinfo.file[row][column] == 'E')
+		{
+			get_player_position_helper(game, row, column, map_start_row);
+			return (true);
+		}
+		column++;
+	}
+	return (false);
 }
 
 void	get_player_position(t_game *game)
 {
 	size_t	row;
-	size_t	column;
 	size_t	map_start_row;
 
 	row = get_ini_maprow(game, 0);
-    column = 0;
 	map_start_row = row;
 	row++;
 	while (game->mapinfo.file[row] != NULL
 		&& is_all_one(game->mapinfo.file[row]) == false)
 	{
-		while (game->mapinfo.file[row][column] != '\0')
-		{
-			if (game->mapinfo.file[row][column] == 'N'
-				|| game->mapinfo.file[row][column] == 'S'
-				|| game->mapinfo.file[row][column] == 'W'
-				|| game->mapinfo.file[row][column] == 'E')
-				return (get_player_position_helper(game, row, column,
-						map_start_row));
-			column++;
-		}
-		column = 0;
+		if (gp_helper(game, row, map_start_row) == true)
+			return ;
 		row++;
 	}
-    if (game->player.direction == '\0')
-        goodbye(game, ERROR, "Invalid map\nplayer position is invalid\nor not found\n");
+	if (game->player.direction == '\0')
+		goodbye(game, ERROR,
+			"Invalid map\nplayer position is invalid\nor not found\n");
 }

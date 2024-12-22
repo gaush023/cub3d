@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   is_all_space.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 20:05:03 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/22 16:14:33 by shuga            ###   ########.fr       */
+/*   Created: 2024/12/22 16:22:33 by shuga             #+#    #+#             */
+/*   Updated: 2024/12/22 16:22:43 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-int	ft_isdigit(int c)
+bool	is_all_space(char *line)
 {
-	return ((c >= '0' && c <= '9') || c == '-' || c == '+');
+	size_t i;
+
+	i = 0;
+	while (line[i] != '\n')
+	{
+		if (!is_space(line[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

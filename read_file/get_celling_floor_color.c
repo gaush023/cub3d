@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:29:40 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 19:48:48 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:33:26 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static size_t	coutout_line(int *tmp, size_t row, size_t column, t_game *game)
 {
 	int	start_pos;
-   
+
 	start_pos = column;
 	while (game->mapinfo.file[row][column] != ',')
 	{
@@ -24,8 +24,8 @@ static size_t	coutout_line(int *tmp, size_t row, size_t column, t_game *game)
 			goodbye(game, ERROR, "rgb color format is invalid\n");
 		column++;
 	}
-    *tmp = ft_atoi(&game->mapinfo.file[row][start_pos], game);
-    if (*tmp < 0 || *tmp > 255)
+	*tmp = ft_atoi(&game->mapinfo.file[row][start_pos], game);
+	if (*tmp < 0 || *tmp > 255)
 		goodbye(game, ERROR, "rgb color format is invalid bb\n");
 	return (column);
 }
@@ -37,20 +37,20 @@ static void	copy_rgb_color_helper(size_t row, size_t column, t_game *game,
 
 	if (type == CEILING)
 	{
-		game->texinfo.ceiling = (int *)calloc(1,
-				sizeof *(game->texinfo.ceiling));
+		game->texinfo.ceiling = (int *)calloc(1, (sizeof)
+				* game->texinfo.ceiling);
 		if (!game->texinfo.ceiling)
 			goodbye(game, ERROR, "Error allocating memory\n");
-        tmp = game->texinfo.ceiling;
+		tmp = game->texinfo.ceiling;
 	}
 	else
 	{
-		game->texinfo.floor = (int *)calloc(1, sizeof * (game->texinfo.floor));
+		game->texinfo.floor = (int *)calloc(1, sizeof *(game->texinfo.floor));
 		if (!game->texinfo.floor)
 			goodbye(game, ERROR, "Error allocating memory\n");
 		tmp = game->texinfo.floor;
 	}
-    column = coutout_line(&tmp[0], row, column, game);
+	column = coutout_line(&tmp[0], row, column, game);
 	column = coutout_line(&tmp[1], row, column + 1, game);
 	tmp[2] = ft_atoi(&game->mapinfo.file[row][column + 1], game);
 	if (tmp[2] < 0 || tmp[2] > 255)

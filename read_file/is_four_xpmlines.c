@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:29:21 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 20:01:10 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:18:16 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*re_xpmpath(char *path)
 	tmp_pos = i;
 	while (path[i] != '\n')
 		i++;
-	tmp = calloc(1, sizeof * tmp * (i - tmp_pos + 1));
+	tmp = calloc(1, (sizeof) * tmp * (i - tmp_pos + 1));
 	while (tmp_pos < i)
 	{
 		tmp[j] = path[tmp_pos];
@@ -87,16 +87,16 @@ static bool	is_four_xpmlines_helper(t_game *game, size_t row, size_t column)
 			|| game->mapinfo.file[row][column] == 'S'
 			|| game->mapinfo.file[row][column] == 'W'
 			|| (game->mapinfo.file[row][column] == 'E'))
-	    {
-            copy_xpm_path(game, row, column);
-            break;
-        }
-        column++;
+		{
+			copy_xpm_path(game, row, column);
+			break ;
+		}
+		column++;
 	}
-    if (game->texinfo.north != NULL && game->texinfo.south != NULL
-        && game->texinfo.west != NULL && game->texinfo.east != NULL)
-        return (SUCCESS);
-    return (ERROR);
+	if (game->texinfo.north != NULL && game->texinfo.south != NULL
+		&& game->texinfo.west != NULL && game->texinfo.east != NULL)
+		return (SUCCESS);
+	return (ERROR);
 }
 
 bool	is_four_xpmlines(t_game *game)
