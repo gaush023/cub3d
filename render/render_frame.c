@@ -6,9 +6,10 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:28:48 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/11 01:28:51 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:43:44 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	init_img(t_game *game, t_img *image, int width, int height)
@@ -31,38 +32,38 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 	image->addr[pixel] = color;
 }
 
-void set_frame_pixel(t_game *game, t_img *image, int x, int y)
+void	set_frame_pixel(t_game *game, t_img *image, int x, int y)
 {
-    double fog_factor;
-    int color;
+	double	fog_factor;
+	int		color;
 
-    if (game->texture_pixels[y][x] > 0)
-        set_image_pixel(image, x, y, game->texture_pixels[y][x]);
-    else if (y < game->window_height / 2)
-    {
-        fog_factor = (double)(game->window_height / 2 - y) / (game->window_height / 2);
-        color = mix_color(game->texinfo.hex_ceiling, FOG_COLOR, fog_factor);
-        set_image_pixel(image, x, y, color);
-    }
-    else if (y < game->window_height - 1)
-        set_image_pixel(image, x, y, game->texinfo.hex_floor);
+	if (game->texture_pixels[y][x] > 0)
+		set_image_pixel(image, x, y, game->texture_pixels[y][x]);
+	else if (y < game->window_height / 2)
+	{
+		fog_factor = (double)(game->window_height / 2 - y)
+			/ (game->window_height / 2);
+		color = mix_color(game->texinfo.hex_ceiling, FOG_COLOR, fog_factor);
+		set_image_pixel(image, x, y, color);
+	}
+	else if (y < game->window_height - 1)
+		set_image_pixel(image, x, y, game->texinfo.hex_floor);
 }
-
 
 void	render_frame(t_game *game)
 {
 	t_img	image;
 	int		x;
 	int		y;
-    
-    image.img = NULL;
+
+	image.img = NULL;
 	init_img(game, &image, game->window_width, game->window_height);
 	y = 0;
 	while (y < game->window_height)
 	{
 		x = 0;
 		while (x < game->window_width)
-	    {
+		{
 			set_frame_pixel(game, &image, x, y);
 			x++;
 		}

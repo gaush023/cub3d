@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fog.c                                              :+:      :+:    :+:   */
+/*   get_texture_index.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:28:34 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/22 16:42:39 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:50:38 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	mix_color(int base_color, int fog_color, double factor)
+void	get_texture_index(t_game *game, t_ray *ray)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	if (factor > 1.0)
-		factor = 1.0;
-	if (factor < 0.0)
-		factor = 0.0;
-	r = ((base_color >> 16) & 0xFF) * (1.0 - factor)
-		+ ((fog_color >> 16) & 0xFF) * factor;
-	g = ((base_color >> 8) & 0xFF) * (1.0 - factor) + ((fog_color >> 8) & 0xFF)
-		* factor;
-	b = (base_color & 0xFF) * (1.0 - factor) + (fog_color & 0xFF) * factor;
-	return ((r << 16) | (g << 8) | b);
-}
-
-double	calc_fog_factor(double distance, double max_distance)
-{
-	return (distance / max_distance);
+	if (ray->side == SIDE_X)
+	{
+		if (ray->dir_x < 0)
+			game->texinfo.index = WEST;
+		else
+			game->texinfo.index = EAST;
+	}
+	else
+	{
+		if (ray->dir_y > 0)
+			game->texinfo.index = SOUTH;
+		else
+			game->texinfo.index = NORTH;
+	}
 }

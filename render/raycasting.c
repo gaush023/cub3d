@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:28:34 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 20:24:16 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:48:52 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ void	init_raycasting_info(int x, t_ray *ray, t_player *player, t_game *game)
 
 static void	caluc_line_height(t_ray *ray, t_player *player, t_game *game)
 {
-   if(ray->side == 0)
-        ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
-    else 
-        ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-    ray->line_height = (int)(game->window_height / ray->wall_dist);
-    ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
-    if(ray->draw_start < 0)
-        ray->draw_start = 0;
-    ray->draw_end = ray->line_height / 2 + game->window_height / 2;
-    if(ray->draw_end >= game->window_height)
-        ray->draw_end = game->window_height - 1;
-    if(ray->side == SIDE_X)
-        ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
-    else 
-        ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-    ray->wall_x -= floor(ray->wall_x);
+	if (ray->side == 0)
+		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
+	else
+		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+	ray->line_height = (int)(game->window_height / ray->wall_dist);
+	ray->draw_start = -(ray->line_height) / 2 + game->window_height / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + game->window_height / 2;
+	if (ray->draw_end >= game->window_height)
+		ray->draw_end = game->window_height - 1;
+	if (ray->side == SIDE_X)
+		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
+	else
+		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 void	get_texture_index(t_game *game, t_ray *ray)
@@ -60,26 +60,12 @@ void	get_texture_index(t_game *game, t_ray *ray)
 			game->texinfo.index = SOUTH;
 		else
 			game->texinfo.index = NORTH;
-
-    }
+	}
 }
 
-
-void	update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
+void	update_texture_pixel_helper(t_game *game, t_texinfo *tex, t_ray *ray,
+		int x)
 {
-	int	y;
-	int	color;
-    double fog_factor;
-
-    color = 0;
-	get_texture_index(game, ray);
-	tex->x = (int)(ray->wall_x * tex->size);
-	if ((ray->side == 0 && ray->dir_x < 0) || (ray->side == 1
-			&& ray->dir_y > 0))
-		tex->x = tex->size - tex->x - 1;
-	tex->step = 1.0 * tex->size / ray->line_height;
-	tex->pos = (ray->draw_start - game->window_height / 2 + ray->line_height
-			/ 2) * tex->step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
@@ -88,18 +74,35 @@ void	update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
 		color = game->textures[tex->index][tex->y * tex->size + tex->x];
 		if (tex->index == NORTH || tex->index == SOUTH)
 			color = (color >> 1) & GREY;
-        fog_factor = calc_fog_factor(ray->wall_dist, MAX_DISTANCE);
-        color = mix_color(color, FOG_COLOR, fog_factor);
-        game->texture_pixels[y][x] = color;
-        if (ray->wall_dist > MAX_DISTANCE)
-        {
-            if (ray->wall_dist > MAX_DISTANCE * 1.5)
-                game->texture_pixels[y][x] = 0;
-            else 
-                game->texture_pixels[y][x]= FOG_COLOR;
-        }
-        y++;
+		fog_factor = calc_fog_factor(ray->wall_dist, MAX_DISTANCE);
+		color = mix_color(color, FOG_COLOR, fog_factor);
+		game->texture_pixels[y][x] = color;
+		if (ray->wall_dist > MAX_DISTANCE)
+		{
+			if (ray->wall_dist > MAX_DISTANCE * 1.5)
+				game->texture_pixels[y][x] = 0;
+			else
+				game->texture_pixels[y][x] = FOG_COLOR;
+		}
+		y++;
 	}
+}
+
+void	update_texture_pixel(t_game *game, t_texinfo *tex, t_ray *ray, int x)
+{
+	int		y;
+	int		color;
+	double	fog_factor;
+
+	color = 0;
+	get_texture_index(game, ray);
+	tex->x = (int)(ray->wall_x * tex->size);
+	if ((ray->side == 0 && ray->dir_x < 0) || (ray->side == 1
+			&& ray->dir_y > 0))
+		tex->x = tex->size - tex->x - 1;
+	tex->step = 1.0 * tex->size / ray->line_height;
+	tex->pos = (ray->draw_start - game->window_height / 2 + ray->line_height
+			/ 2) * tex->step;
 }
 
 int	raycasting(t_player *player, t_game *game)
@@ -108,15 +111,14 @@ int	raycasting(t_player *player, t_game *game)
 	int		x;
 
 	x = 0;
-
-    while (x < game->window_width)
+	while (x < game->window_width)
 	{
 		init_raycasting_info(x, &ray, player, game);
 		set_dda(&ray, player);
 		perform_dda(game, &ray);
-        caluc_line_height(&ray, player, game);
+		caluc_line_height(&ray, player, game);
 		update_texture_pixel(game, &game->texinfo, &ray, x);
 		x++;
-    }
-    return (SUCCESS);
+	}
+	return (SUCCESS);
 }

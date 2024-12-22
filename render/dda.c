@@ -6,7 +6,7 @@
 /*   By: shuga <shuga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:28:34 by shuga             #+#    #+#             */
-/*   Updated: 2024/12/15 20:23:59 by shuga            ###   ########.fr       */
+/*   Updated: 2024/12/22 16:42:52 by shuga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,10 @@ void	perform_dda(t_game *game, t_ray *ray)
 			ray->side = SIDE_Y;
 		}
 		if (ray->map_y < 0 || ray->map_x < 0
-			|| ray->map_y > game->mapinfo.height 
-			|| ray->map_x > game->mapinfo.width )
+			|| ray->map_y > game->mapinfo.height
+			|| ray->map_x > game->mapinfo.width)
 			break ;
 		else if (game->map[ray->map_y][ray->map_x] > '0')
 			hit = true;
-        
-    }
+	}
 }
-
